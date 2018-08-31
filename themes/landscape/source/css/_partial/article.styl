@@ -302,6 +302,27 @@ $article-share-link
     background: color-google
     text-shadow: 0 1px darken(color-google, 20%)
 
+// 自定义分享图标样式
+$config-share-link
+  @extend $article-share-link
+  background-repeat: no-repeat
+  background-size: 20px
+  background-position: 15px
+
+// segmentfault 思否
+.article-share-segmentfault
+  @extend $config-share-link
+  background-image: url(segmentfault-url)
+  &:hover
+    background-color: color-segmentfault
+
+// juejin掘金
+.article-share-juejin
+  @extend $config-share-link
+  background-image: url(juejin-url)
+  &:hover
+    background-color: darken(color-juejin, 20%)
+
 .article-gallery
   background: #000
   position: relative
