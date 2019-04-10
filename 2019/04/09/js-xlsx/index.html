@@ -6,19 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://www.ruizer.com">
-  <title>Ruizer&#39;Blog</title>
+  <title>在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能 | Ruizer&#39;Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个前端工程师的博客">
-<meta name="keywords" content="ruizer vue javascript html css css3 html5 前端 可视化 开发者 程序猿 程序媛 极客 编程 代码 开源 IT IT网站 用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ruizer&#39;Blog">
-<meta property="og:url" content="https://www.ruizer.com/index.html">
+  <meta name="description" content="博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 具体业务系列，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等  为什么要用 js-xlsx 实际开发中，经常会遇到批量导入（导入 Excel）的功能，特别是后台管理系统； js-xlsx">
+<meta name="keywords" content="xlsx,业务,原创">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能">
+<meta property="og:url" content="https://www.ruizer.com/2019/04/09/js-xlsx/index.html">
 <meta property="og:site_name" content="Ruizer&#39;Blog">
-<meta property="og:description" content="一个前端工程师的博客">
+<meta property="og:description" content="博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 具体业务系列，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等  为什么要用 js-xlsx 实际开发中，经常会遇到批量导入（导入 Excel）的功能，特别是后台管理系统； js-xlsx">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://www.ruizer.com/assets/img/xlsx1.png">
+<meta property="og:image" content="https://www.ruizer.com/assets/img/xlsx2.png">
+<meta property="og:updated_time" content="2019-04-10T07:11:22.381Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ruizer&#39;Blog">
-<meta name="twitter:description" content="一个前端工程师的博客">
+<meta name="twitter:title" content="在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能">
+<meta name="twitter:description" content="博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 具体业务系列，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等  为什么要用 js-xlsx 实际开发中，经常会遇到批量导入（导入 Excel）的功能，特别是后台管理系统； js-xlsx">
+<meta name="twitter:image" content="https://www.ruizer.com/assets/img/xlsx1.png">
   
   
     <link rel="icon" href="/assets/img/favicon.png">
@@ -144,16 +148,14 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-js-xlsx" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-js-xlsx" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/09/js-xlsx/">在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能</a>
+    <h1 class="article-title" itemprop="name">
+      在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能
     </h1>
   
 
@@ -275,16 +277,73 @@ var _hmt = _hmt || [];
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/09/js-xlsx/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo" title="微博">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="segmentfault share-sns" href="javascript:;" data-type="segmentfault" title="segmentfault 思否">
+            SF
+            <!-- <i class="icon icon-weixin"></i> -->
+          </a>
+          <a class="juejin share-sns" href="javascript:;" data-type="juejin" title="juejin 掘金">
+            掘
+            <!-- <i class="icon icon-weixin"></i> -->
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin" title="微信">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq" title="QQ">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban" title="豆瓣">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone" title="QQ空间">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook" title="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter" title="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google" title="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.ruizer.com/2019/04/09/js-xlsx/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -299,13 +358,42 @@ var _hmt = _hmt || [];
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么要用-js-xlsx"><span class="toc-number">1.</span> <span class="toc-text">为什么要用 js-xlsx</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何使用"><span class="toc-number">2.</span> <span class="toc-text">如何使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解析-Excel"><span class="toc-number">3.</span> <span class="toc-text">解析 Excel</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取-WorkBook-对象"><span class="toc-number">3.1.</span> <span class="toc-text">获取 WorkBook 对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-WorkBook-对象"><span class="toc-number">3.2.</span> <span class="toc-text">使用 WorkBook 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WorkBook-对象里面到底有什么呢"><span class="toc-number">3.2.1.</span> <span class="toc-text">WorkBook 对象里面到底有什么呢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#读取-WorkBook-对象"><span class="toc-number">3.2.2.</span> <span class="toc-text">读取 WorkBook 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#主要的辅助函数"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">主要的辅助函数</span></a></li></ol></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
 
 
+  
+  
+  
 
   
+  <div id="SOHUCS" sid="js-xlsx" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytNngH6f",
+        conf: "prod_7dbbd40305bbc63edae838552f03a0bb"
+    });
+</script>
+</script>
+  
+
+  
+
   
 
 
@@ -328,8 +416,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
