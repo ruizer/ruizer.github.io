@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://www.ruizer.com">
-  <title>在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能 | Ruizer&#39;Blog</title>
+  <title>真实业务系列：在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能 | Ruizer&#39;Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 具体业务系列，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等  为什么要用 js-xlsx 实际开发中，经常会遇到批量导入（导入 Excel）的功能，特别是后台管理系统； js-xlsx">
+  <meta name="description" content="博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 真实业务系列，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等  为什么要用 js-xlsx 实际开发中，经常会遇到批量导入（导入 Excel）的功能，特别是后台管理系统； js-xlsx">
 <meta name="keywords" content="xlsx,业务,原创">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能">
+<meta property="og:title" content="真实业务系列：在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能">
 <meta property="og:url" content="https://www.ruizer.com/2019/04/09/js-xlsx/index.html">
 <meta property="og:site_name" content="Ruizer&#39;Blog">
-<meta property="og:description" content="博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 具体业务系列，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等  为什么要用 js-xlsx 实际开发中，经常会遇到批量导入（导入 Excel）的功能，特别是后台管理系统； js-xlsx">
+<meta property="og:description" content="博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 真实业务系列，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等  为什么要用 js-xlsx 实际开发中，经常会遇到批量导入（导入 Excel）的功能，特别是后台管理系统； js-xlsx">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.ruizer.com/assets/img/xlsx1.png">
 <meta property="og:image" content="https://www.ruizer.com/assets/img/xlsx2.png">
-<meta property="og:updated_time" content="2019-04-10T07:11:22.381Z">
+<meta property="og:updated_time" content="2019-04-12T02:32:48.980Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能">
-<meta name="twitter:description" content="博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 具体业务系列，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等  为什么要用 js-xlsx 实际开发中，经常会遇到批量导入（导入 Excel）的功能，特别是后台管理系统； js-xlsx">
+<meta name="twitter:title" content="真实业务系列：在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能">
+<meta name="twitter:description" content="博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 真实业务系列，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等  为什么要用 js-xlsx 实际开发中，经常会遇到批量导入（导入 Excel）的功能，特别是后台管理系统； js-xlsx">
 <meta name="twitter:image" content="https://www.ruizer.com/assets/img/xlsx1.png">
   
   
@@ -155,7 +155,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能
+      真实业务系列：在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能
     </h1>
   
 
@@ -169,7 +169,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 <strong>具体业务系列</strong>，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等</p>
+<p>博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 <strong>真实业务系列</strong>，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等</p>
 </blockquote>
 <h1 id="为什么要用-js-xlsx"><a href="#为什么要用-js-xlsx" class="headerlink" title="为什么要用 js-xlsx"></a>为什么要用 js-xlsx</h1><ol>
 <li>实际开发中，经常会遇到批量导入（导入 Excel）的功能，特别是后台管理系统；</li>
@@ -344,6 +344,20 @@ var _hmt = _hmt || [];
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2019/04/12/target2019041220190712/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          短期目标(20190412-20190712)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -486,6 +500,10 @@ var _hmt = _hmt || [];
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">原创</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">目标</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -534,6 +552,8 @@ var _hmt = _hmt || [];
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">前端开发一枚，普普通通，愿世间安好</div>
   	  	
     	</section>
     
