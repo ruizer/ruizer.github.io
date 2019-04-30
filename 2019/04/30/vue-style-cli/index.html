@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://www.ruizer.com">
-  <title>Archives: 2019/4 | Ruizer&#39;Blog</title>
+  <title>如何写一个命令行工具：NPM 自动生成VUE组件模板 | Ruizer&#39;Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个前端工程师的博客">
-<meta name="keywords" content="ruizer vue javascript html css css3 html5 前端 可视化 开发者 程序猿 程序媛 极客 编程 代码 开源 IT IT网站 用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ruizer&#39;Blog">
-<meta property="og:url" content="https://www.ruizer.com/archives/2019/04/index.html">
+  <meta name="description" content="命令行工具，即 Cli(command-line interface)。是在图形用户界面得到普及之前使用最为广泛的用户界面，它通常不支持鼠标，用户通过键盘输入指令，计算机接收到指令后，予以执行。  1 介绍使用vue组件模板开发的项目每次新建组件的时候，都需要新增.vue文件，在这个文件当中写入template、script、style这些内容，并且每个人命名风格不统一，造成了很多烦恼。本文就是">
+<meta name="keywords" content="原创,node.js,vue.js,component,cli">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何写一个命令行工具：NPM 自动生成VUE组件模板">
+<meta property="og:url" content="https://www.ruizer.com/2019/04/30/vue-style-cli/index.html">
 <meta property="og:site_name" content="Ruizer&#39;Blog">
-<meta property="og:description" content="一个前端工程师的博客">
+<meta property="og:description" content="命令行工具，即 Cli(command-line interface)。是在图形用户界面得到普及之前使用最为广泛的用户界面，它通常不支持鼠标，用户通过键盘输入指令，计算机接收到指令后，予以执行。  1 介绍使用vue组件模板开发的项目每次新建组件的时候，都需要新增.vue文件，在这个文件当中写入template、script、style这些内容，并且每个人命名风格不统一，造成了很多烦恼。本文就是">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://www.ruizer.com/assets/img/vue-style-cli.png">
+<meta property="og:updated_time" content="2019-04-30T06:15:20.506Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ruizer&#39;Blog">
-<meta name="twitter:description" content="一个前端工程师的博客">
+<meta name="twitter:title" content="如何写一个命令行工具：NPM 自动生成VUE组件模板">
+<meta name="twitter:description" content="命令行工具，即 Cli(command-line interface)。是在图形用户界面得到普及之前使用最为广泛的用户界面，它通常不支持鼠标，用户通过键盘输入指令，计算机接收到指令后，予以执行。  1 介绍使用vue组件模板开发的项目每次新建组件的时候，都需要新增.vue文件，在这个文件当中写入template、script、style这些内容，并且每个人命名风格不统一，造成了很多烦恼。本文就是">
+<meta name="twitter:image" content="https://www.ruizer.com/assets/img/vue-style-cli.png">
   
   
     <link rel="icon" href="/assets/img/favicon.png">
@@ -144,36 +147,87 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-vue-style-cli" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/30/vue-style-cli/" class="archive-article-date">
-  	<time datetime="2019-04-30T04:38:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/30/vue-style-cli/">如何写一个命令行工具：NPM 自动生成VUE组件模板</a>
+    <h1 class="article-title" itemprop="name">
+      如何写一个命令行工具：NPM 自动生成VUE组件模板
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/04/30/vue-style-cli/" class="archive-article-date">
+  	<time datetime="2019-04-30T04:38:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>命令行工具，即 Cli(command-line interface)。是在图形用户界面得到普及之前使用最为广泛的用户界面，它通常不支持鼠标，用户通过键盘输入指令，计算机接收到指令后，予以执行。</p>
+</blockquote>
+<h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1 介绍"></a>1 介绍</h2><p>使用<code>vue</code>组件模板开发的项目每次新建组件的时候，都需要新增<code>.vue</code>文件，在这个文件当中写入<code>template</code>、<code>script</code>、<code>style</code>这些内容，并且每个人命名风格不统一，造成了很多烦恼。<br>本文就是通过<code>node</code>来帮助我们写一个<code>命令行工具</code>，自动去执行这些重复性工作，并保持同一种风格：<br><img src="/assets/img/vue-style-cli.png" alt="image"></p>
+<p>项目地址：<a href="https://github.com/ruizer/vue-style-cli" target="_blank" rel="noopener">vue-style-cli</a>，欢迎<a href="https://github.com/ruizer/vue-style-cli" target="_blank" rel="noopener">star</a>。有什么问题或者建议可以在<a href="https://github.com/ruizer/vue-style-cli/issues" target="_blank" rel="noopener">issues</a>提问</p>
+<a id="more"></a>
+<h2 id="2-创建新项目"><a href="#2-创建新项目" class="headerlink" title="2 创建新项目"></a>2 创建新项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir vue-style-cli</span><br><span class="line">$ cd vue-style-cli</span><br><span class="line">$ npm init</span><br></pre></td></tr></table></figure>
+<p>最后我们会得到一个<code>vue-style-cli</code>文件夹，并在<code>vue-style-cli</code>文件夹初始化了一个<code>package.json</code>文件。</p>
+<h2 id="新建可执行文件"><a href="#新建可执行文件" class="headerlink" title="新建可执行文件"></a>新建可执行文件</h2><p>我们在<code>vue-style-cli</code>文件夹下新建<code>index.js</code>文件，并在文件头部加上以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env node</span><br></pre></td></tr></table></figure>
+<p>最后，制定<code>index.js</code>文件为此项目的可执行文件，在<code>package.json</code>文件中加入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;bin&quot;: &#123;</span><br><span class="line">    &quot;vs&quot;: &quot;index.js&quot;</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="3-开发调试"><a href="#3-开发调试" class="headerlink" title="3 开发调试"></a>3 开发调试</h2><p>我们全局安装一个cli包过后，可以全局调用这个命令行工具。那我们开发的时候怎么调用呢？答案很简单，使用<code>npm link</code>命令。</p>
+<blockquote>
+<p>在<code>npm</code>包下执行 <code>npm link</code>，会创建一个连接符号，连接全局文件夹。这样就能进行开发调试了。</p>
+<p>官方文档：<a href="https://docs.npmjs.com/cli/link" target="_blank" rel="noopener">https://docs.npmjs.com/cli/link</a></p>
+</blockquote>
+<h2 id="4-命令行辅助工具"><a href="#4-命令行辅助工具" class="headerlink" title="4 命令行辅助工具"></a>4 命令行辅助工具</h2><p>在写命令行工具的时候，会使用一些辅助工具让我们的开发更高效。以下是本项目使用的一些辅助工具：</p>
+<blockquote>
+<p><a href="https://github.com/tj/commander.js" target="_blank" rel="noopener">commander.js</a>：帮助参数解析</p>
+<p><a href="https://github.com/chalk/chalk" target="_blank" rel="noopener">chalk</a>：命令行输出自定义颜色</p>
+</blockquote>
+<p>当然还有其他比较有效的辅助工具：</p>
+<blockquote>
+<p><a href="https://github.com/SBoudrias/Inquirer.js" target="_blank" rel="noopener">Inquirer.js</a>：常见交互式命令行</p>
+<p><a href="https://github.com/sindresorhus/ora" target="_blank" rel="noopener">ora</a>：命令行动画效果</p>
+<p><a href="https://github.com/flipxfx/download-git-repo" target="_blank" rel="noopener">download-git-repo</a>：下载并提取 git 仓库</p>
+<p><a href="https://github.com/sindresorhus/log-symbols" target="_blank" rel="noopener">log-symbols</a>：可以在终端上显示出 √ 或 × 等的图标。</p>
+</blockquote>
+<h2 id="5-vue-style-cli主要代码逻辑"><a href="#5-vue-style-cli主要代码逻辑" class="headerlink" title="5 vue-style-cli主要代码逻辑"></a>5 vue-style-cli主要代码逻辑</h2><h3 id="5-1-命令行主要代码"><a href="#5-1-命令行主要代码" class="headerlink" title="5.1 命令行主要代码"></a>5.1 命令行主要代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">program</span><br><span class="line">  .command(&apos;create &lt;name&gt;&apos;)</span><br><span class="line">  .description(&apos;create a vue component with directory&apos;)</span><br><span class="line">  .alias(&apos;c&apos;)</span><br><span class="line">  .option(&apos;-p, --path [path]&apos;, &apos;real path; Please use relative paths&apos;)</span><br><span class="line">  .option(&apos;-o,--only&apos;, &apos;create only component without directory&apos;)</span><br><span class="line">  .option(&apos;-s,--scoped&apos;, &apos;Scoped CSS&apos;)</span><br><span class="line">  .option(&apos;-l, --lang [lang]&apos;, &apos;CSS Modules&apos;)</span><br><span class="line">  .action((name, cmd) =&gt; &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">      cmd.only</span><br><span class="line">        ? generateOnlyComponent(</span><br><span class="line">            name,</span><br><span class="line">            getRealPath(cmd.path),</span><br><span class="line">            cmd.lang,</span><br><span class="line">            cmd.scoped,</span><br><span class="line">          )</span><br><span class="line">        : generateComponent(name, getRealPath(cmd.path), cmd.lang, cmd.scoped);</span><br><span class="line">    &#125; catch (e) &#123;</span><br><span class="line">      console.log(e);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>主要就只有一个<code>create</code>命令，带有一些<code>option</code>参数可选择：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">--path：文件创建地址(相对地址)，没有则在当前命令执行文件夹下创建</span><br><span class="line">--only：是否只创建单独的`.vue`组件，默认创建带有文件夹风格</span><br><span class="line">--scoped：`.vue`组件中CSS作用域</span><br><span class="line">--lang：`.vue`组件中CSS模块，默认没有</span><br></pre></td></tr></table></figure>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">e:\demo&gt;vs c vsDemo -p ./src/views</span><br><span class="line">在E:\demo目录下执行vs c vsDemo -p ./src/views 命令，最终会在E:\demo\src\views下生成vs-demo文件夹，vs-demo文件夹里面含有index.js和vs-demo.vue两个文件</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-文件生成代码"><a href="#5-2-文件生成代码" class="headerlink" title="5.2 文件生成代码"></a>5.2 文件生成代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">generateOnlyComponent：生成单独的.vue文件</span><br><span class="line">generateComponent：生成含有文件夹格式的.vue文件</span><br></pre></td></tr></table></figure>
+<p>这里主要介绍<code>generateComponent</code>，因为本质上<code>generateComponent</code>与<code>generateOnlyComponent</code>逻辑差不多</p>
+<h4 id="5-2-1-使用mkdirp与tpl-apply"><a href="#5-2-1-使用mkdirp与tpl-apply" class="headerlink" title="5.2.1 使用mkdirp与tpl_apply"></a>5.2.1 使用mkdirp与tpl_apply</h4><p>本作者为了快速开发(图方便)，使用了<code>mkdirp</code>与<code>tpl_apply</code>这两个库进行文件夹和文件的生成。</p>
+<blockquote>
+<p><a href="https://github.com/substack/node-mkdirp" target="_blank" rel="noopener">mkdirp</a>：生成文件夹</p>
+<p><a href="https://github.com/i5ting/tpl_apply" target="_blank" rel="noopener">tpl_apply</a>： 基于<a href="https://github.com/wycats/handlebars.js" target="_blank" rel="noopener">handlebars.js</a>实现文件写入</p>
+</blockquote>
+<h4 id="5-2-2-代码逻辑"><a href="#5-2-2-代码逻辑" class="headerlink" title="5.2.2 代码逻辑"></a>5.2.2 代码逻辑</h4><p>1、检查当前路径下是否存在此文件夹，若存在，报错，否则进行下一步</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let exists = false;</span><br><span class="line">try &#123;</span><br><span class="line">  fs.accessSync(filePath);</span><br><span class="line">  exists = true;</span><br><span class="line">&#125; catch (error) &#123;&#125;</span><br><span class="line">if (exists) &#123;</span><br><span class="line">  message.error(`Unable to create: $&#123;filePath&#125; folder already exists`);</span><br><span class="line">  return resolve();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、在当前路径下创建文件夹，并在此文件夹下新增<code>.js</code>和<code>.vue</code>文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">// 创建文件夹</span><br><span class="line">    mkdirp(filePath, err =&gt; &#123;</span><br><span class="line">      if (err) &#123;</span><br><span class="line">        console.error(err);</span><br><span class="line">        return resolve();</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      const data = &#123;</span><br><span class="line">        kebabCaseName: name,</span><br><span class="line">        camelCaseName: firstUpperCase(getCamelCase(name)),</span><br><span class="line">        lang,</span><br><span class="line">        scoped: scoped ? &apos; scoped&apos; : &apos;&apos;,</span><br><span class="line">      &#125;;</span><br><span class="line">      const tplPath = path.join(__dirname, &apos;../templates&apos;);</span><br><span class="line">      const tpls = [</span><br><span class="line">        &#123; source: &apos;vue.tpl&apos;, dest: `$&#123;name&#125;.vue` &#125;,</span><br><span class="line">        &#123; source: &apos;index.tpl&apos;, dest: &apos;index.js&apos; &#125;,</span><br><span class="line">      ];</span><br><span class="line"></span><br><span class="line">      tpls.forEach((&#123; source, dest &#125;) =&gt; &#123;</span><br><span class="line">        tplApply.tpl_apply(</span><br><span class="line">          path.join(tplPath, source),</span><br><span class="line">          data,</span><br><span class="line">          path.join(filePath, dest),</span><br><span class="line">        );</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      message.success(`generate $&#123;filePath&#125; success`);</span><br><span class="line">      resolve();</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>3、模板文件</p>
+<p>vue.tpl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;&#123;&#123;kebabCaseName&#125;&#125;&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;&#123;&#123;kebabCaseName&#125;&#125;&quot;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&#123;&#123;#if lang&#125;&#125; lang=&quot;&#123;&#123;lang&#125;&#125;&quot;&#123;&#123;/if&#125;&#125;&#123;&#123;scoped&#125;&#125;&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>index.tpl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123;&#123;camelCaseName&#125;&#125; from &apos;./&#123;&#123;kebabCaseName&#125;&#125;&apos;;</span><br><span class="line"></span><br><span class="line">export default &#123;&#123;camelCaseName&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="6-发布"><a href="#6-发布" class="headerlink" title="6 发布"></a>6 发布</h2><p>发布包到npm非常简单，只需要一条命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+<p>详细可见：<a href="/2019/04/30/publish-npm-package/">如何发布自己的NPM包？</a></p>
+<p>本文完。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -201,207 +255,137 @@ var _hmt = _hmt || [];
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo" title="微博">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="segmentfault share-sns" href="javascript:;" data-type="segmentfault" title="segmentfault 思否">
+            SF
+            <!-- <i class="icon icon-weixin"></i> -->
+          </a>
+          <a class="juejin share-sns" href="javascript:;" data-type="juejin" title="juejin 掘金">
+            掘
+            <!-- <i class="icon icon-weixin"></i> -->
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin" title="微信">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq" title="QQ">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban" title="豆瓣">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone" title="QQ空间">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook" title="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter" title="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google" title="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.ruizer.com/2019/04/30/vue-style-cli/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/30/publish-npm-package/" class="archive-article-date">
-  	<time datetime="2019-04-30T04:26:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-30</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/30/publish-npm-package/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何发布自己的NPM包？</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/30/publish-npm-package/">如何发布自己的NPM包？</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">npm</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">node.js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">package</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-介绍"><span class="toc-number">1.</span> <span class="toc-text">1 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-创建新项目"><span class="toc-number">2.</span> <span class="toc-text">2 创建新项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建可执行文件"><span class="toc-number">3.</span> <span class="toc-text">新建可执行文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-开发调试"><span class="toc-number">4.</span> <span class="toc-text">3 开发调试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-命令行辅助工具"><span class="toc-number">5.</span> <span class="toc-text">4 命令行辅助工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-vue-style-cli主要代码逻辑"><span class="toc-number">6.</span> <span class="toc-text">5 vue-style-cli主要代码逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-命令行主要代码"><span class="toc-number">6.1.</span> <span class="toc-text">5.1 命令行主要代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-文件生成代码"><span class="toc-number">6.2.</span> <span class="toc-text">5.2 文件生成代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-1-使用mkdirp与tpl-apply"><span class="toc-number">6.2.1.</span> <span class="toc-text">5.2.1 使用mkdirp与tpl_apply</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-2-代码逻辑"><span class="toc-number">6.2.2.</span> <span class="toc-text">5.2.2 代码逻辑</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-发布"><span class="toc-number">7.</span> <span class="toc-text">6 发布</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/30/front-end-util-code/" class="archive-article-date">
-  	<time datetime="2019-04-30T04:18:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-30</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/30/front-end-util-code/">打造自己的前端业务代码库</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">业务</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">util</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/12/target2019041220190712/" class="archive-article-date">
-  	<time datetime="2019-04-12T02:35:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/12/target2019041220190712/">短期目标(20190412-20190712)</a>
-    </h1>
+  <div id="SOHUCS" sid="vue-style-cli" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytNngH6f",
+        conf: "prod_7dbbd40305bbc63edae838552f03a0bb"
+    });
+</script>
+</script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">目标</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/09/js-xlsx/" class="archive-article-date">
-  	<time datetime="2019-04-09T14:07:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/js-xlsx/">真实业务系列：在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">业务</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xlsx</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -424,8 +408,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

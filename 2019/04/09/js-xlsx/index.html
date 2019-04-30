@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="https://www.ruizer.com">
   <title>真实业务系列：在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能 | Ruizer&#39;Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 真实业务系列，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等  为什么要用 js-xlsx 实际开发中，经常会遇到批量导入（导入 Excel）的功能，特别是后台管理系统； js-xlsx">
-<meta name="keywords" content="xlsx,业务,原创">
+  <meta name="description" content="博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 真实业务系列，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等">
+<meta name="keywords" content="业务,原创,xlsx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="真实业务系列：在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能">
 <meta property="og:url" content="https://www.ruizer.com/2019/04/09/js-xlsx/index.html">
 <meta property="og:site_name" content="Ruizer&#39;Blog">
-<meta property="og:description" content="博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 真实业务系列，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等  为什么要用 js-xlsx 实际开发中，经常会遇到批量导入（导入 Excel）的功能，特别是后台管理系统； js-xlsx">
+<meta property="og:description" content="博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 真实业务系列，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.ruizer.com/assets/img/xlsx1.png">
 <meta property="og:image" content="https://www.ruizer.com/assets/img/xlsx2.png">
-<meta property="og:updated_time" content="2019-04-12T02:32:48.980Z">
+<meta property="og:updated_time" content="2019-04-30T06:11:16.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="真实业务系列：在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能">
-<meta name="twitter:description" content="博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 真实业务系列，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等  为什么要用 js-xlsx 实际开发中，经常会遇到批量导入（导入 Excel）的功能，特别是后台管理系统； js-xlsx">
+<meta name="twitter:description" content="博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 真实业务系列，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等">
 <meta name="twitter:image" content="https://www.ruizer.com/assets/img/xlsx1.png">
   
   
@@ -171,6 +171,7 @@ var _hmt = _hmt || [];
         <blockquote>
 <p>博客好久之前就已经搭建好了，但是一直没有写任何东西。这样不行啊，还是要逼自己一把。写什么呢？这是个非常头疼的事情，一来没什么文笔，二来自身技术底蕴略有不足。思前考后，最终在整理笔记的时候决定先弄个 <strong>真实业务系列</strong>，比如 js-xlsx 实现批量导入功能、JS 生成颜色渐变等</p>
 </blockquote>
+<a id="more"></a>
 <h1 id="为什么要用-js-xlsx"><a href="#为什么要用-js-xlsx" class="headerlink" title="为什么要用 js-xlsx"></a>为什么要用 js-xlsx</h1><ol>
 <li>实际开发中，经常会遇到批量导入（导入 Excel）的功能，特别是后台管理系统；</li>
 <li>js-xlsx 是由<a href="https://sheetjs.com/" target="_blank" rel="noopener">SheetJS</a>出品的一款非常方便、多格式支持、纯 JS 且兼容性强的解析和导出工具库，能同时运行在浏览器端和服务器端，本文都是以浏览器端为例；</li>
@@ -247,6 +248,7 @@ var _hmt = _hmt || [];
      </script>
 </body>
 </html> -->
+<p>本文完。</p>
 
       
 
@@ -260,15 +262,15 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xlsx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">业务</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xlsx</a>
         		</li>
       		
 		</ul>
@@ -490,7 +492,7 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">xlsx</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -498,11 +500,43 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">util</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">原创</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">xlsx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">npm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">node.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">package</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">目标</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">vue.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">component</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">cli</a>
               </li>
             
             <div class="clearfix"></div>
