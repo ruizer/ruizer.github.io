@@ -397,17 +397,30 @@ var _hmt = _hmt || [];
   
 
   
-  <div id="SOHUCS" sid="js-xlsx" ></div> 
-<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
-<script type="text/javascript">
-    window.changyan.api.config({
-        appid: "cytNngH6f",
-        conf: "prod_7dbbd40305bbc63edae838552f03a0bb"
-    });
-</script>
-</script>
-  
 
+  
+  
+  
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'false' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  window.onload = function () {
+    new Valine({
+      el: '.comment',
+      notify: notify,
+      verify: verify,
+      app_id: "XmHjxBHTVlbpcMO6hSa1EX48-gzGzoHsz",
+      app_key: "yiKxyO2NEeHTHM9wCdvjaWoa",
+      placeholder: "Just go go",
+      avatar: "mm"
+    });
+  }
+</script>
+    </section>
   
 
   
