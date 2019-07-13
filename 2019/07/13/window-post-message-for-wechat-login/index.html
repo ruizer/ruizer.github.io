@@ -6,19 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://www.ruizer.com">
-  <title>Archives: 2019/4 | Ruizer&#39;Blog</title>
+  <title>利用 postMessage 的骚操作来实现微信网页授权登陆 | Ruizer&#39;Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个前端工程师的博客">
-<meta name="keywords" content="ruizer vue javascript html css css3 html5 前端 可视化 开发者 程序猿 程序媛 极客 编程 代码 开源 IT IT网站 用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ruizer&#39;Blog">
-<meta property="og:url" content="https://www.ruizer.com/archives/2019/04/index.html">
+  <meta name="description" content="之前对于postMessage并不是特别熟悉，只是看过文档、写过demo。但这次在做微信网页授权登陆的时候，用到了postMessage，用得并不是很顺手，所以想着写篇文章记录一下，并且也重新写了个demo，源码：post-message  postMessage概念window.postMessage() 方法可以安全地实现跨源通信。通常，对于两个不同页面的脚本，只有当执行它们的页面位于具有相">
+<meta name="keywords" content="postMessage,跨域,微信登陆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用 postMessage 的骚操作来实现微信网页授权登陆">
+<meta property="og:url" content="https://www.ruizer.com/2019/07/13/window-post-message-for-wechat-login/index.html">
 <meta property="og:site_name" content="Ruizer&#39;Blog">
-<meta property="og:description" content="一个前端工程师的博客">
+<meta property="og:description" content="之前对于postMessage并不是特别熟悉，只是看过文档、写过demo。但这次在做微信网页授权登陆的时候，用到了postMessage，用得并不是很顺手，所以想着写篇文章记录一下，并且也重新写了个demo，源码：post-message  postMessage概念window.postMessage() 方法可以安全地实现跨源通信。通常，对于两个不同页面的脚本，只有当执行它们的页面位于具有相">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://www.ruizer.com/assets/img/wechat-postmeassge/open-window.png">
+<meta property="og:image" content="https://www.ruizer.com/assets/img/wechat-postmeassge/message-info.png">
+<meta property="og:image" content="https://www.ruizer.com/assets/img/wechat-postmeassge/after-msg-handle.png">
+<meta property="og:updated_time" content="2019-07-13T05:11:58.328Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ruizer&#39;Blog">
-<meta name="twitter:description" content="一个前端工程师的博客">
+<meta name="twitter:title" content="利用 postMessage 的骚操作来实现微信网页授权登陆">
+<meta name="twitter:description" content="之前对于postMessage并不是特别熟悉，只是看过文档、写过demo。但这次在做微信网页授权登陆的时候，用到了postMessage，用得并不是很顺手，所以想着写篇文章记录一下，并且也重新写了个demo，源码：post-message  postMessage概念window.postMessage() 方法可以安全地实现跨源通信。通常，对于两个不同页面的脚本，只有当执行它们的页面位于具有相">
+<meta name="twitter:image" content="https://www.ruizer.com/assets/img/wechat-postmeassge/open-window.png">
   
   
     <link rel="icon" href="/assets/img/favicon.png">
@@ -144,206 +149,210 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-window-post-message-for-wechat-login" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      利用 postMessage 的骚操作来实现微信网页授权登陆
+    </h1>
+  
+
+        
+        <a href="/2019/07/13/window-post-message-for-wechat-login/" class="archive-article-date">
+  	<time datetime="2019-07-13T04:12:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-13</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>之前对于postMessage并不是特别熟悉，只是看过文档、写过demo。但这次在做微信网页授权登陆的时候，用到了postMessage，用得并不是很顺手，所以想着写篇文章记录一下，并且也重新写了个<a href="https://www.ruizer.cn/demo/#/post-message" target="_blank" rel="noopener">demo</a>，源码：<a href="https://github.com/ruizer/demo/blob/master/src/views/post-message/post-message.vue" target="_blank" rel="noopener">post-message</a></p>
+</blockquote>
+<h2 id="postMessage概念"><a href="#postMessage概念" class="headerlink" title="postMessage概念"></a>postMessage概念</h2><p><code>window.postMessage()</code> 方法可以安全地实现跨源通信。通常，对于两个不同页面的脚本，只有当执行它们的页面位于具有相同的协议（通常为<code>https</code>），端口号（<code>443</code>为<code>https</code>的默认值），以及主机  (两个页面的模数 <code>Document.domain</code> 设置为相同的值) 时，这两个脚本才能相互通信。<code>window.postMessage()</code> 方法提供了一种受控机制来规避此限制，只要正确的使用，这种方法就很安全。<br><a id="more"></a></p>
+<p><code>window.postMessage()</code> 方法被调用时，会在所有页面脚本执行完毕之后（e.g., 在该方法之后设置的事件、之前设置的 <code>timeout</code> 事件,etc.）向目标窗口派发一个 <code>MessageEvent</code> 消息。 该   <code>MessageEvent</code> 消息有四个属性需要注意： <code>message</code> 属性表示该<code>message</code> 的类型； <code>data</code> 属性为 <code>window.postMessage</code> 的第一个参数；<code>origin</code> 属性表示调用 <code>window.postMessage()</code> 方法时调用页面的当前状态； <code>source</code> 属性记录调用 <code>window.postMessage()</code> 方法的窗口信息。</p>
+<h2 id="大体思路"><a href="#大体思路" class="headerlink" title="大体思路"></a>大体思路</h2><p>做过微信网页授权的人应该都知道，用户扫码过后，微信后台与我们的后台会有一个响应。但对于前后端分离项目，我们的后台只能做重定向的操作才能让前端知道用户使用微信登陆成功了（如果你在前端做定时任务一直刷新，当我没说。再者登陆内嵌存在多个页面中，并且登陆成功后需要获取多个数据，这时候后台直接重定向就不是太方便了。</p>
+<p>所以，这时候我们需要一个专门做登陆验证的页面，后台重定向到这个页面，然后利用 <code>postMessage</code> 进行通信，告诉我们用户微信登陆成功了，可以获取一些数据了</p>
+<h2 id="父窗口"><a href="#父窗口" class="headerlink" title="父窗口"></a>父窗口</h2><blockquote>
+<p>网页接入微信登陆的时候，登陆页面即为父窗口。</p>
+</blockquote>
+<p>首先，当用户点击微信登陆时，使用<code>window.open()</code>打开一个子窗口，并监听message事件，子窗口链接就是微信提供的链接，地址可见<a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419316505&amp;token=&amp;lang=zh_CN" target="_blank" rel="noopener">网站应用微信登录开发指南</a></p>
+<p><img src="/assets/img/wechat-postmeassge/open-window.png" alt="打开子窗口"></p>
+<p>可以看见，图中有个<code>setInterval</code>定时任务，这是为了监听子窗口关闭后清除<code>message</code>监听事件</p>
+<p><code>handleMessage</code>就是消息接收处理函数，它会接收一个参数<code>e</code>，<code>e</code>是一个对象：<br><img src="/assets/img/wechat-postmeassge/message-info.png" alt="消息对象"></p>
+<p>一般会用到 <code>origin</code> 和 <code>data</code></p>
+<ul>
+<li><code>origin</code>是发送的消息源，用来验证消息是从哪个地方发送过来的，一定要验证，若不是你定义的源则不能接收处理这个消息</li>
+<li><code>data</code>是发送的数据，在这里你可以拿到微信登陆重定向页面给你发过来的数据，判断用户是否登陆。<br><img src="/assets/img/wechat-postmeassge/after-msg-handle.png" alt="接收消息"></li>
+</ul>
+<h2 id="子窗口"><a href="#子窗口" class="headerlink" title="子窗口"></a>子窗口</h2><blockquote>
+<p>微信二维码页面、重定向页即为子窗口</p>
+</blockquote>
+<p>当然微信二维码页面我们是做不了任何操作的，因为这是微信内部代码，也不在同个域。但是用户扫码授权登陆后重定向至我们自定义的重定向页，这时候我们可以在重定向页面向父窗口（即登录页）传递信息，父窗口可以根据这些信息知道用户是否登陆了，并进行相应的操作。</p>
+<p>什么时候传递信息呢？我们可以把登陆成功信息拼接在重定向地址上面，前端解析地址得到信息后就可以把这些信息传递给父窗口：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 先解析地址，得到数据，然后使用 window.opener.postMessage 传递数据</span><br><span class="line">window.opener.postMessage(数据, window.location);</span><br></pre></td></tr></table></figure></p>
+<p>本文完。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/30/vue-style-cli/" class="archive-article-date">
-  	<time datetime="2019-04-30T04:38:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/30/vue-style-cli/">如何写一个命令行工具：NPM 自动生成VUE组件模板</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">node.js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">postMessage</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">vue.js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">跨域</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">component</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">cli</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">微信登陆</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo" title="微博">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="segmentfault share-sns" href="javascript:;" data-type="segmentfault" title="segmentfault 思否">
+            SF
+            <!-- <i class="icon icon-weixin"></i> -->
+          </a>
+          <a class="juejin share-sns" href="javascript:;" data-type="juejin" title="juejin 掘金">
+            掘
+            <!-- <i class="icon icon-weixin"></i> -->
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin" title="微信">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq" title="QQ">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban" title="豆瓣">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone" title="QQ空间">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook" title="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter" title="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google" title="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.ruizer.com/2019/07/13/window-post-message-for-wechat-login/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/30/publish-npm-package/" class="archive-article-date">
-  	<time datetime="2019-04-30T04:26:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-30</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/11/javascript-basis-typeof-instanceof/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript相关知识点集锦(二)：typeof 与 instanceof</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/30/publish-npm-package/">如何发布自己的NPM包？</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">npm</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">node.js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">package</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/30/front-end-util-code/" class="archive-article-date">
-  	<time datetime="2019-04-30T04:18:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/30/front-end-util-code/">打造自己的前端业务代码库</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">业务</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">util</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/09/js-xlsx/" class="archive-article-date">
-  	<time datetime="2019-04-09T14:07:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/js-xlsx/">真实业务系列：在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xlsx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">业务</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
+  
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'false' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  window.onload = function () {
+    new Valine({
+      el: '.comment',
+      notify: notify,
+      verify: verify,
+      app_id: "XmHjxBHTVlbpcMO6hSa1EX48-gzGzoHsz",
+      app_key: "yiKxyO2NEeHTHM9wCdvjaWoa",
+      placeholder: "Just go go",
+      avatar: "mm",
+      visitor: true
+    });
+  }
+</script>
+    </section>
   
 
-    
+  
 
 
           </div>
@@ -358,7 +367,7 @@ var _hmt = _hmt || [];
 			</div>
 			<div class="footer-right">
 				
-				<span id="/archives/2019/04/index.html" class="leancloud-visitors" data-flag-title="">
+				<span id="/2019/07/13/window-post-message-for-wechat-login/" class="leancloud-visitors" data-flag-title="利用 postMessage 的骚操作来实现微信网页授权登陆">
 					<em class="post-meta-item-text">阅读量 </em>
 					<i class="leancloud-visitors-count">0</i>
 				</span>
@@ -376,8 +385,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
