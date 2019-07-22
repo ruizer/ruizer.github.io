@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://www.ruizer.com">
-  <title>Tag: 业务 | Ruizer&#39;Blog</title>
+  <title>原生JS实现table表格列宽拖拽 | Ruizer&#39;Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个前端工程师的博客">
-<meta name="keywords" content="ruizer vue javascript html css css3 html5 前端 可视化 开发者 程序猿 程序媛 极客 编程 代码 开源 IT IT网站 用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ruizer&#39;Blog">
-<meta property="og:url" content="https://www.ruizer.com/tags/业务/index.html">
+  <meta name="description" content="本文配套Demo  实现表格列宽拖拽功能，主要使用鼠标事件：mousedown、mouseup、mousemove事件 | 描述— | —mousedown | 事件在指针设备（如：鼠标）按钮按下时触发mouseup | 事件在指针设备（如：鼠标）按钮抬起时触发mousemove | 当指针设备( 通常指鼠标 )在元素上移动时, mousemove 事件被触发当然，这些事件都是绑定在表头上面的，">
+<meta name="keywords" content="JavaScript,table">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原生JS实现table表格列宽拖拽">
+<meta property="og:url" content="https://www.ruizer.com/2019/07/22/table-grad-表格列宽拖拽/index.html">
 <meta property="og:site_name" content="Ruizer&#39;Blog">
-<meta property="og:description" content="一个前端工程师的博客">
+<meta property="og:description" content="本文配套Demo  实现表格列宽拖拽功能，主要使用鼠标事件：mousedown、mouseup、mousemove事件 | 描述— | —mousedown | 事件在指针设备（如：鼠标）按钮按下时触发mouseup | 事件在指针设备（如：鼠标）按钮抬起时触发mousemove | 当指针设备( 通常指鼠标 )在元素上移动时, mousemove 事件被触发当然，这些事件都是绑定在表头上面的，">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-22T15:29:15.624Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ruizer&#39;Blog">
-<meta name="twitter:description" content="一个前端工程师的博客">
+<meta name="twitter:title" content="原生JS实现table表格列宽拖拽">
+<meta name="twitter:description" content="本文配套Demo  实现表格列宽拖拽功能，主要使用鼠标事件：mousedown、mouseup、mousemove事件 | 描述— | —mousedown | 事件在指针设备（如：鼠标）按钮按下时触发mouseup | 事件在指针设备（如：鼠标）按钮抬起时触发mousemove | 当指针设备( 通常指鼠标 )在元素上移动时, mousemove 事件被触发当然，这些事件都是绑定在表头上面的，">
   
   
     <link rel="icon" href="/assets/img/favicon.png">
@@ -144,110 +145,189 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-table-grad-表格列宽拖拽" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/30/front-end-util-code/" class="archive-article-date">
-  	<time datetime="2019-04-30T04:18:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/30/front-end-util-code/">打造自己的前端业务代码库</a>
+    <h1 class="article-title" itemprop="name">
+      原生JS实现table表格列宽拖拽
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/07/22/table-grad-表格列宽拖拽/" class="archive-article-date">
+  	<time datetime="2019-07-22T15:24:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本文配套<a href="https://www.ruizer.cn/demo/#/table-drag" target="_blank" rel="noopener">Demo</a></p>
+</blockquote>
+<p>实现表格列宽拖拽功能，主要使用鼠标事件：<code>mousedown</code>、<code>mouseup</code>、<code>mousemove</code><br>事件 | 描述<br>— | —<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/mousedown_event" target="_blank" rel="noopener">mousedown</a> | 事件在指针设备（如：鼠标）按钮按下时触发<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/mouseup_event" target="_blank" rel="noopener">mouseup</a> | 事件在指针设备（如：鼠标）按钮抬起时触发<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/mousemove_event" target="_blank" rel="noopener">mousemove</a> | 当指针设备( 通常指鼠标 )在元素上移动时, <code>mousemove</code> 事件被触发<br>当然，这些事件都是绑定在表头上面的，大致流程就是：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">鼠标按下记录单元格--&gt;鼠标移动调整列宽</span><br><span class="line">鼠标移动调整列宽--&gt;鼠标抬起结束宽度调整</span><br></pre></td></tr></table></figure></p>
+<h3 id="按下鼠标-mousedown"><a href="#按下鼠标-mousedown" class="headerlink" title="按下鼠标 mousedown"></a>按下鼠标 mousedown</h3><p>当鼠标按下时，记录单元格<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/** 鼠标按下 */</span><br><span class="line">mouseDown(e) &#123;</span><br><span class="line">  // 记录单元格</span><br><span class="line">  if (!(e &amp;&amp; e.target)) return;</span><br><span class="line">  this.localTd = e.target;</span><br><span class="line">  if (e.offsetX &gt; this.localTd.offsetWidth - 10) &#123;</span><br><span class="line">    this.localTd.mouseDown = true;</span><br><span class="line">    this.localTd.oldX = e.x;</span><br><span class="line">    this.localTd.oldWidth = this.localTd.offsetWidth;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="移动鼠标-mousemove"><a href="#移动鼠标-mousemove" class="headerlink" title="移动鼠标 mousemove"></a>移动鼠标 mousemove</h3><p>当鼠标移动时，根据暂存的单元格及宽度信息，调整列宽<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">/** 鼠标移动 */</span><br><span class="line">mouseMove(e) &#123;</span><br><span class="line">  if (!(e &amp;&amp; e.target)) return;</span><br><span class="line">  const vm = e.target;</span><br><span class="line">  // 更改鼠标样式</span><br><span class="line">  if (e.offsetX &gt; vm.offsetWidth - 10) &#123;</span><br><span class="line">    vm.style.cursor = &quot;col-resize&quot;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    vm.style.cursor = &quot;default&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  // 取出暂存的Table Cell</span><br><span class="line">  if (!this.localTd) this.localTd = vm;</span><br><span class="line">  if (this.localTd.mouseDown !== null &amp;&amp; this.localTd.mouseDown === true) &#123;</span><br><span class="line">    this.localTd.style.cursor = &quot;default&quot;;</span><br><span class="line">    if (this.localTd.oldWidth + (e.x - this.localTd.oldX) &gt; 0) &#123;</span><br><span class="line">      this.localTd.width =</span><br><span class="line">        this.localTd.oldWidth + (e.x - this.localTd.oldX);</span><br><span class="line">    &#125;</span><br><span class="line">    // 调整列宽</span><br><span class="line">    this.localTd.style.width = this.localTd.width;</span><br><span class="line">    this.localTd.style.cursor = &quot;col-resize&quot;;</span><br><span class="line">    // 调整该列中的每个Cell</span><br><span class="line">    let table = this.localTd;</span><br><span class="line">    while (table.tagName !== &quot;TABLE&quot;) table = table.parentElement;</span><br><span class="line">    for (let j = 0; j &lt; table.rows.length; j++) &#123;</span><br><span class="line">      table.rows[j].cells[</span><br><span class="line">        this.localTd.cellIndex</span><br><span class="line">      ].width = this.localTd.width;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="鼠标抬起-mouseup"><a href="#鼠标抬起-mouseup" class="headerlink" title="鼠标抬起 mouseup"></a>鼠标抬起 mouseup</h3><p>鼠标抬起，结束宽度调整<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/** 鼠标抬起 */</span><br><span class="line">mouseUp(e) &#123;</span><br><span class="line">  // 结束宽度调整</span><br><span class="line">  if (!(e &amp;&amp; e.target)) return;</span><br><span class="line">  if (!this.localTd) this.localTd = e.target;</span><br><span class="line">  this.localTd.mouseDown = false;</span><br><span class="line">  this.localTd.style.cursor = &quot;default&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>本文完， 感谢阅读。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">业务</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">util</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">table</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo" title="微博">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="segmentfault share-sns" href="javascript:;" data-type="segmentfault" title="segmentfault 思否">
+            SF
+            <!-- <i class="icon icon-weixin"></i> -->
+          </a>
+          <a class="juejin share-sns" href="javascript:;" data-type="juejin" title="juejin 掘金">
+            掘
+            <!-- <i class="icon icon-weixin"></i> -->
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin" title="微信">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq" title="QQ">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban" title="豆瓣">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone" title="QQ空间">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook" title="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter" title="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google" title="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.ruizer.com/2019/07/22/table-grad-表格列宽拖拽/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/09/js-xlsx/" class="archive-article-date">
-  	<time datetime="2019-04-09T14:07:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/13/window-post-message-for-wechat-login/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">利用 postMessage 的骚操作来实现微信网页授权登陆</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/js-xlsx/">真实业务系列：在浏览器中使用 js-xlsx ，实现纯前端解析Excel文件，实现批量导入功能</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">业务</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xlsx</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+  
+  
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'false' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  window.onload = function () {
+    new Valine({
+      el: '.comment',
+      notify: notify,
+      verify: verify,
+      app_id: "XmHjxBHTVlbpcMO6hSa1EX48-gzGzoHsz",
+      app_key: "yiKxyO2NEeHTHM9wCdvjaWoa",
+      placeholder: "Just go go",
+      avatar: "mm",
+      visitor: true
+    });
+  }
+</script>
+    </section>
+  
+
+  
 
 
           </div>
@@ -262,7 +342,7 @@ var _hmt = _hmt || [];
 			</div>
 			<div class="footer-right">
 				
-				<span id="/tags/业务/index.html" class="leancloud-visitors" data-flag-title="">
+				<span id="/2019/07/22/table-grad-表格列宽拖拽/" class="leancloud-visitors" data-flag-title="原生JS实现table表格列宽拖拽">
 					<em class="post-meta-item-text">阅读量 </em>
 					<i class="leancloud-visitors-count">0</i>
 				</span>
@@ -280,9 +360,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

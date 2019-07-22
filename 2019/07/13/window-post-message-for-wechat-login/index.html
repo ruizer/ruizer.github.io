@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://www.ruizer.com/assets/img/wechat-postmeassge/open-window.png">
 <meta property="og:image" content="https://www.ruizer.com/assets/img/wechat-postmeassge/message-info.png">
 <meta property="og:image" content="https://www.ruizer.com/assets/img/wechat-postmeassge/after-msg-handle.png">
-<meta property="og:updated_time" content="2019-07-13T05:11:58.328Z">
+<meta property="og:updated_time" content="2019-07-22T15:25:38.867Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用 postMessage 的骚操作来实现微信网页授权登陆">
 <meta name="twitter:description" content="之前对于postMessage并不是特别熟悉，只是看过文档、写过demo。但这次在做微信网页授权登陆的时候，用到了postMessage，用得并不是很顺手，所以想着写篇文章记录一下，并且也重新写了个demo，源码：post-message  postMessage概念window.postMessage() 方法可以安全地实现跨源通信。通常，对于两个不同页面的脚本，只有当执行它们的页面位于具有相">
@@ -193,7 +193,7 @@ var _hmt = _hmt || [];
 </blockquote>
 <p>当然微信二维码页面我们是做不了任何操作的，因为这是微信内部代码，也不在同个域。但是用户扫码授权登陆后重定向至我们自定义的重定向页，这时候我们可以在重定向页面向父窗口（即登录页）传递信息，父窗口可以根据这些信息知道用户是否登陆了，并进行相应的操作。</p>
 <p>什么时候传递信息呢？我们可以把登陆成功信息拼接在重定向地址上面，前端解析地址得到信息后就可以把这些信息传递给父窗口：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 先解析地址，得到数据，然后使用 window.opener.postMessage 传递数据</span><br><span class="line">window.opener.postMessage(数据, window.location);</span><br></pre></td></tr></table></figure></p>
-<p>本文完。</p>
+<p>本文完， 感谢阅读。</p>
 
       
 
@@ -292,6 +292,15 @@ var _hmt = _hmt || [];
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/07/22/table-grad-表格列宽拖拽/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          原生JS实现table表格列宽拖拽
+        
+      </div>
+    </a>
   
   
     <a href="/2019/07/11/javascript-basis-typeof-instanceof/" id="article-nav-older" class="article-nav-link-wrap">
@@ -452,23 +461,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">目标</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">xlsx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">业务</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -476,19 +469,23 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">业务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">util</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">postMessage</a>
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">微信登陆</a>
+                <a href="javascript:void(0)" class="js-tag color5">xlsx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,6 +501,10 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">table</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">vue.js</a>
               </li>
              
@@ -513,6 +514,18 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">cli</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">postMessage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">微信登陆</a>
               </li>
             
             <div class="clearfix"></div>
