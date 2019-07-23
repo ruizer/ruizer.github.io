@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://www.ruizer.com">
-  <title>Tag: npm | Ruizer&#39;Blog</title>
+  <title>window.print 浏览器打印全集~ | Ruizer&#39;Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个前端工程师的博客">
-<meta name="keywords" content="ruizer vue javascript html css css3 html5 前端 可视化 开发者 程序猿 程序媛 极客 编程 代码 开源 IT IT网站 用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ruizer&#39;Blog">
-<meta property="og:url" content="https://www.ruizer.com/tags/npm/index.html">
+  <meta name="description" content="本文配套Demo  近日做了浏览器打印，这里总结下相关的知识点，并不保证准确性。 打印接口首先浏览器打印已经是非常成熟的应用了，一般是不会存在一些兼容性问题 最简单的打印就是直接调用 window.print() ，当然用 document.execCommand(&amp;#39;print&amp;#39;) 也可以达到同样的效果">
+<meta name="keywords" content="window,print">
+<meta property="og:type" content="article">
+<meta property="og:title" content="window.print 浏览器打印全集~">
+<meta property="og:url" content="https://www.ruizer.com/2019/07/23/window-print-浏览器打印全集/index.html">
 <meta property="og:site_name" content="Ruizer&#39;Blog">
-<meta property="og:description" content="一个前端工程师的博客">
+<meta property="og:description" content="本文配套Demo  近日做了浏览器打印，这里总结下相关的知识点，并不保证准确性。 打印接口首先浏览器打印已经是非常成熟的应用了，一般是不会存在一些兼容性问题 最简单的打印就是直接调用 window.print() ，当然用 document.execCommand(&amp;#39;print&amp;#39;) 也可以达到同样的效果">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-23T12:49:25.213Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ruizer&#39;Blog">
-<meta name="twitter:description" content="一个前端工程师的博客">
+<meta name="twitter:title" content="window.print 浏览器打印全集~">
+<meta name="twitter:description" content="本文配套Demo  近日做了浏览器打印，这里总结下相关的知识点，并不保证准确性。 打印接口首先浏览器打印已经是非常成熟的应用了，一般是不会存在一些兼容性问题 最简单的打印就是直接调用 window.print() ，当然用 document.execCommand(&amp;#39;print&amp;#39;) 也可以达到同样的效果">
   
   
     <link rel="icon" href="/assets/img/favicon.png">
@@ -144,68 +145,246 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-window-print-浏览器打印全集" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/30/publish-npm-package/" class="archive-article-date">
-  	<time datetime="2019-04-30T04:26:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/30/publish-npm-package/">如何发布自己的NPM包？</a>
+    <h1 class="article-title" itemprop="name">
+      window.print 浏览器打印全集~
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/07/23/window-print-浏览器打印全集/" class="archive-article-date">
+  	<time datetime="2019-07-23T12:45:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本文配套<a href="https://www.ruizer.cn/demo/#/print" target="_blank" rel="noopener">Demo</a></p>
+</blockquote>
+<p>近日做了浏览器打印，这里总结下相关的知识点，并不保证准确性。</p>
+<h2 id="打印接口"><a href="#打印接口" class="headerlink" title="打印接口"></a>打印接口</h2><p>首先浏览器打印已经是非常成熟的应用了，一般是不会存在一些兼容性问题</p>
+<p>最简单的打印就是直接调用 <code>window.print()</code> ，当然用 <code>document.execCommand(&#39;print&#39;)</code> 也可以达到同样的效果<br><a id="more"></a><br>一般直接在网页调用 <code>print</code> 方法是满足不了我们的业务需求：</p>
+<ul>
+<li>打印的时候不同风格样式</li>
+<li>特定纸张大小和方向</li>
+<li>打印特定区域等等</li>
+</ul>
+<p>所以我们需要一些特定的办法来帮助我们改善用户体验！</p>
+<h2 id="打印样式相关"><a href="#打印样式相关" class="headerlink" title="打印样式相关"></a>打印样式相关</h2><h3 id="样式引用方式"><a href="#样式引用方式" class="headerlink" title="样式引用方式"></a>样式引用方式</h3><ol>
+<li>print style sheet (打印样式表)<br>引入 <code>link</code> 时，加个 <code>media=&quot;print&quot;</code> 来标识这是打印机才会应用的样式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=&quot;/example.css&quot; media=&quot;print&quot; rel=&quot;stylesheet&quot; /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样，打印的时候就会默认将该样式应用到这些文档中</p>
+<ol start="2">
+<li>@media (媒介查询)<br>如果特定的打印样式并不是很多，我们完全没必要重新写个样式表，利用媒介查询就可以了：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@media print &#123;</span><br><span class="line">    // 这里面的样式，打印的时候才会生效</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="打印时颜色消失"><a href="#打印时颜色消失" class="headerlink" title="打印时颜色消失"></a>打印时颜色消失</h3><p>打印时你可能会遇到背景颜色消失的情况，针对这个问题，<code>print-color-adjust</code> 可以解决你的问题</p>
+<p>属性 <code>print-color-adjust</code> 用来设定浏览器打印背景颜色(或背景图片)的行为，它有两个比较重要的参数：</p>
+<ul>
+<li>economy（默认值）：允许浏览器自动调整</li>
+<li>exact：使用你设定好的样式颜色<br>代码如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@media print &#123;</span><br><span class="line">    body &#123;</span><br><span class="line">        -webkit-print-color-adjust: exact !important;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="表格-或其他-被分页分割"><a href="#表格-或其他-被分页分割" class="headerlink" title="表格(或其他)被分页分割"></a>表格(或其他)被分页分割</h3><p>针对这个问题，重点介绍以下三个属性：</p>
+<ul>
+<li>break-after（<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/break-after" target="_blank" rel="noopener">MDN说明链接</a>）</li>
+<li>break-before（<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/break-before" target="_blank" rel="noopener">MDN说明链接</a>）</li>
+<li>break-inside（<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/break-inside" target="_blank" rel="noopener">MDN说明链接</a>）</li>
+</ul>
+<p>这三个属性与页面断点有关系，利用这些属性可以生产元素前后换页等效果，详细内容可以看 MDN 说明。<br>在这里我们主要用第三个属性 <code>break-inside</code>，元素内容中间，不可以被换页<br>代码如下，设定一个class no-break 给不想换页的元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;p class=&quot;no-break&quot;&gt;我不想被换页&lt;/p&gt;</span><br><span class="line">@media print &#123;</span><br><span class="line">    .no-break &#123;</span><br><span class="line">        break-inside: avoid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="设定-page"><a href="#设定-page" class="headerlink" title="设定@page"></a>设定@page</h3><p>利用 <code>@page</code> 可以设定纸张配置，有两个比较常用的属性</p>
+<ul>
+<li>size：指定目标纸张的尺寸（A4、A5）、以及页面方向（portrait / landscape）</li>
+<li>margin:：利用 <code>margin</code> 设定边距<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@page &#123;</span><br><span class="line">   size: A4 portrait;</span><br><span class="line">   margin: 10mm;</span><br><span class="line">&#125;</span><br><span class="line">@page :first &#123;</span><br><span class="line">   margin-top: 20mm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="彩色打印"><a href="#彩色打印" class="headerlink" title="彩色打印"></a>彩色打印</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@media print and (color) &#123;</span><br><span class="line">    // 杂七杂八</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="杂七杂八"><a href="#杂七杂八" class="headerlink" title="杂七杂八"></a>杂七杂八</h3><ol>
+<li>表格相关<br> 如果表格分页了，表头<code>thead</code>、表尾<code>tfoot</code>是每页都会打印的</li>
+<li>display:none <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 不想打印出来的可以使用display：none</span><br><span class="line">@media print &#123;</span><br><span class="line">    .no-print &#123;</span><br><span class="line">        display:none</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="个性化定制打印区域-打印内容"><a href="#个性化定制打印区域-打印内容" class="headerlink" title="个性化定制打印区域/打印内容"></a>个性化定制打印区域/打印内容</h2><p>如果我们只想打印某一区域又不想重新写样式表哈，什么的。可以直接使用<a href="https://github.com/crabbly/print.js" target="_blank" rel="noopener">Print.js</a>、<a href="https://github.com/DoersGuild/jQuery.print" target="_blank" rel="noopener">jQuery.print</a>。<br>当然，你也可以自己写一个，大概的思路是创建一个 <code>iframe</code>，要打印的dom和样式表都丢进去，再调用iframe的打印事件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/** 给打印增加默认样式 */</span><br><span class="line">function myStyle(mode) &#123;</span><br><span class="line">  mode = mode.toLowerCase();</span><br><span class="line">  mode = mode === &apos;landscape&apos; ? mode : &apos;portrait&apos;;</span><br><span class="line">  const style = document.createElement(&apos;style&apos;);</span><br><span class="line">  style.type = &apos;text/css&apos;;</span><br><span class="line">  style.innerHTML = `@page &#123; size: $&#123;mode&#125;; margin: 10mm;&#125;`;</span><br><span class="line">  return style;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/** @description 动态打印 */</span><br><span class="line">export const printPartial = (</span><br><span class="line">  dom,</span><br><span class="line">  &#123; title = document.title, mode = &apos;portrait&apos; &#125; = &#123;&#125;,</span><br><span class="line">) =&gt; &#123;</span><br><span class="line">  if (!(dom &amp;&amp; dom.outerHTML)) return;</span><br><span class="line">  let copyDom = document.createElement(&apos;span&apos;);</span><br><span class="line">  const styleDom = document.querySelectorAll(&apos;style, link, meta&apos;);</span><br><span class="line">  const titleDom = document.createElement(&apos;title&apos;);</span><br><span class="line">  titleDom.innerText = title;</span><br><span class="line">  copyDom.appendChild(titleDom);</span><br><span class="line">  Array.from(styleDom).forEach(item =&gt; &#123;</span><br><span class="line">    copyDom.appendChild(item.cloneNode(true));</span><br><span class="line">  &#125;);</span><br><span class="line">  copyDom.appendChild(myStyle(mode));</span><br><span class="line">  const headTemp = copyDom.innerHTML;</span><br><span class="line">  copyDom = null;</span><br><span class="line">  const iframeDom = document.createElement(&apos;iframe&apos;);</span><br><span class="line">  const attrObj = &#123;</span><br><span class="line">    height: 0,</span><br><span class="line">    width: 0,</span><br><span class="line">    border: 0,</span><br><span class="line">    wmode: &apos;Opaque&apos;,</span><br><span class="line">  &#125;;</span><br><span class="line">  const styleObj = &#123;</span><br><span class="line">    position: &apos;absolute&apos;,</span><br><span class="line">    top: &apos;-999px&apos;,</span><br><span class="line">    left: &apos;-999px&apos;,</span><br><span class="line">  &#125;;</span><br><span class="line">  Object.entries(attrObj).forEach(([key, value]) =&gt; &#123;</span><br><span class="line">    iframeDom.setAttribute(key, value);</span><br><span class="line">  &#125;);</span><br><span class="line">  Object.entries(styleObj).forEach(([key, value]) =&gt; &#123;</span><br><span class="line">    iframeDom.style[key] = value;</span><br><span class="line">  &#125;);</span><br><span class="line">  </span><br><span class="line">  iframeDom.srcdoc = `&lt;html&gt;&lt;head&gt;$&#123;headTemp&#125;&lt;/head&gt;&lt;/head&gt;&lt;body style=&quot;-webkit-print-color-adjust: exact;&quot;&gt;$&#123;dom.outerHTML&#125;&lt;/body&gt;&lt;/html&gt;`;</span><br><span class="line"></span><br><span class="line">  document.body.insertBefore(iframeDom, document.body.children[0]);</span><br><span class="line">  const iframeWin = iframeDom.contentWindow;</span><br><span class="line">  iframeDom.onload = () =&gt; &#123;</span><br><span class="line">    iframeWin.focus();</span><br><span class="line">    iframeWin.print();</span><br><span class="line">    document.body.removeChild(iframeDom);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="实现页面排版与打印一致"><a href="#实现页面排版与打印一致" class="headerlink" title="实现页面排版与打印一致"></a>实现页面排版与打印一致</h2><p>要实现页面排版与打印一致，首先要考虑的就是页面尺寸问题，但是 <code>web</code> 端大小单位并不是纸张大小距离单位（如cm、mm）。</p>
+<p>这里就有了一个计算方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">假如电脑分辨率是 `D` 像素/英寸，其中一英寸为 `25.4` 毫米 </span><br><span class="line">纸张大小为 `I` 英寸（`M 毫米 / 25.4`）</span><br><span class="line">直接用 ` D * I ` （`M 毫米 * D / 25.4`）就得到A4纸的像素宽了。</span><br><span class="line"></span><br><span class="line">页边距： 0.75 inch</span><br><span class="line">A4: 8.27x11.69 inch</span><br><span class="line">屏幕DPI  : 96DPI</span><br><span class="line">width　=　(8.27 - 0.75 * 2) * 96 = 650 px</span><br><span class="line">height =  (11.69 - 0.75 * 2)* 96 = 978 px</span><br><span class="line"></span><br><span class="line">这里得出：当页面width=650px, height=978px时，打印时，刚好能打印一页的A4纸</span><br></pre></td></tr></table></figure></p>
+<p>但是呢，光有计算方式没有用，主要是 <code>DPI</code> 电脑分辨率的 问题，不同设备分辨率不一样，这里提供一个方法（不保证靠谱）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 计算分辨率</span><br><span class="line">const arrDPI = []</span><br><span class="line">const tmpNode = document.createElement(&apos;div&apos;)</span><br><span class="line">tmpNode.style.cssText = &apos;width:1in;height:1in;position:absolute;left:0;top:0;z-index:99;visibility:hidde&apos;</span><br><span class="line">document.body.appendChild(tmpNode)</span><br><span class="line">arrDPI[0] = parseInt(tmpNode.offsetWidth)</span><br><span class="line">arrDPI[1] = parseInt(tmpNode.offsetHeight)</span><br><span class="line">tmpNode.parentNode.removeChild(tmpNode)</span><br><span class="line">const DPI = Math.min(...arrDPI)</span><br></pre></td></tr></table></figure></p>
+<p>本文完， 感谢阅读。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">npm</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">window</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">node.js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">package</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">print</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo" title="微博">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="segmentfault share-sns" href="javascript:;" data-type="segmentfault" title="segmentfault 思否">
+            SF
+            <!-- <i class="icon icon-weixin"></i> -->
+          </a>
+          <a class="juejin share-sns" href="javascript:;" data-type="juejin" title="juejin 掘金">
+            掘
+            <!-- <i class="icon icon-weixin"></i> -->
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin" title="微信">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq" title="QQ">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban" title="豆瓣">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone" title="QQ空间">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook" title="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter" title="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google" title="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.ruizer.com/2019/07/23/window-print-浏览器打印全集/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/07/22/table-grad-表格列宽拖拽/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">原生JS实现table表格列宽拖拽</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#打印接口"><span class="toc-number">1.</span> <span class="toc-text">打印接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打印样式相关"><span class="toc-number">2.</span> <span class="toc-text">打印样式相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#样式引用方式"><span class="toc-number">2.1.</span> <span class="toc-text">样式引用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打印时颜色消失"><span class="toc-number">2.2.</span> <span class="toc-text">打印时颜色消失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表格-或其他-被分页分割"><span class="toc-number">2.3.</span> <span class="toc-text">表格(或其他)被分页分割</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设定-page"><span class="toc-number">2.4.</span> <span class="toc-text">设定@page</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#彩色打印"><span class="toc-number">2.5.</span> <span class="toc-text">彩色打印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#杂七杂八"><span class="toc-number">2.6.</span> <span class="toc-text">杂七杂八</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#个性化定制打印区域-打印内容"><span class="toc-number">3.</span> <span class="toc-text">个性化定制打印区域/打印内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现页面排版与打印一致"><span class="toc-number">4.</span> <span class="toc-text">实现页面排版与打印一致</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+  
+  
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'false' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  window.onload = function () {
+    new Valine({
+      el: '.comment',
+      notify: notify,
+      verify: verify,
+      app_id: "XmHjxBHTVlbpcMO6hSa1EX48-gzGzoHsz",
+      app_key: "yiKxyO2NEeHTHM9wCdvjaWoa",
+      placeholder: "Just go go",
+      avatar: "mm",
+      visitor: true
+    });
+  }
+</script>
+    </section>
+  
+
+  
 
 
           </div>
@@ -220,7 +399,7 @@ var _hmt = _hmt || [];
 			</div>
 			<div class="footer-right">
 				
-				<span id="/tags/npm/index.html" class="leancloud-visitors" data-flag-title="">
+				<span id="/2019/07/23/window-print-浏览器打印全集/" class="leancloud-visitors" data-flag-title="window.print 浏览器打印全集~">
 					<em class="post-meta-item-text">阅读量 </em>
 					<i class="leancloud-visitors-count">0</i>
 				</span>
@@ -238,9 +417,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
