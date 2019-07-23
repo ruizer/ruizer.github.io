@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://www.ruizer.com">
-  <title>JavaScript相关知识点集锦(三)：类型转换 | Ruizer&#39;Blog</title>
+  <title>JavaScript相关知识点集锦(四)：this 、箭头函数、以及apply、call与bind | Ruizer&#39;Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="首先，类型转换是我们经常遇到的知识点，一般在 JS 类型转换当中只有三种情况：  转换成布尔值 转换成数字 转换成字符串  所有的转换规则都在以下表格：">
+  <meta name="description" content="本文分为两部分：  正确判断 this 手写 apply、call、bind   正确判断 thisthis 是个容易让人混淆的概念，但只要我们理清了思路就会很容易理解。 对于单个规则来说，我们可以按照下面的流程来进行判断：">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript相关知识点集锦(三)：类型转换">
-<meta property="og:url" content="https://www.ruizer.com/2019/07/15/javascript-basis-类型转换/index.html">
+<meta property="og:title" content="JavaScript相关知识点集锦(四)：this 、箭头函数、以及apply、call与bind">
+<meta property="og:url" content="https://www.ruizer.com/2019/07/16/javascript-basis-this指向相关/index.html">
 <meta property="og:site_name" content="Ruizer&#39;Blog">
-<meta property="og:description" content="首先，类型转换是我们经常遇到的知识点，一般在 JS 类型转换当中只有三种情况：  转换成布尔值 转换成数字 转换成字符串  所有的转换规则都在以下表格：">
+<meta property="og:description" content="本文分为两部分：  正确判断 this 手写 apply、call、bind   正确判断 thisthis 是个容易让人混淆的概念，但只要我们理清了思路就会很容易理解。 对于单个规则来说，我们可以按照下面的流程来进行判断：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-23T12:32:46.546Z">
+<meta property="og:image" content="https://www.ruizer.com/assets/img/javascriptBasis/4/this.webp">
+<meta property="og:updated_time" content="2019-07-23T12:42:45.212Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript相关知识点集锦(三)：类型转换">
-<meta name="twitter:description" content="首先，类型转换是我们经常遇到的知识点，一般在 JS 类型转换当中只有三种情况：  转换成布尔值 转换成数字 转换成字符串  所有的转换规则都在以下表格：">
+<meta name="twitter:title" content="JavaScript相关知识点集锦(四)：this 、箭头函数、以及apply、call与bind">
+<meta name="twitter:description" content="本文分为两部分：  正确判断 this 手写 apply、call、bind   正确判断 thisthis 是个容易让人混淆的概念，但只要我们理清了思路就会很容易理解。 对于单个规则来说，我们可以按照下面的流程来进行判断：">
+<meta name="twitter:image" content="https://www.ruizer.com/assets/img/javascriptBasis/4/this.webp">
   
   
     <link rel="icon" href="/assets/img/favicon.png">
@@ -145,137 +147,70 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-javascript-basis-类型转换" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-javascript-basis-this指向相关" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JavaScript相关知识点集锦(三)：类型转换
+      JavaScript相关知识点集锦(四)：this 、箭头函数、以及apply、call与bind
     </h1>
   
 
         
-        <a href="/2019/07/15/javascript-basis-类型转换/" class="archive-article-date">
-  	<time datetime="2019-07-15T12:26:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-15</time>
+        <a href="/2019/07/16/javascript-basis-this指向相关/" class="archive-article-date">
+  	<time datetime="2019-07-16T13:26:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>首先，类型转换是我们经常遇到的知识点，一般在 JS 类型转换当中只有三种情况：</p>
+        <blockquote>
+<p>本文分为两部分：</p>
 <ul>
-<li>转换成布尔值</li>
-<li>转换成数字</li>
-<li>转换成字符串</li>
+<li>正确判断 <code>this</code></li>
+<li>手写 <code>apply</code>、<code>call</code>、<code>bind</code></li>
 </ul>
-<p>所有的转换规则都在以下表格：<br><a id="more"></a></p>
-<table>
-<thead>
-<tr>
-<th>原始值</th>
-<th>转换目标</th>
-<th>结果</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>number</td>
-<td>布尔值</td>
-<td>除了0、-0、NaN都为true</td>
-</tr>
-<tr>
-<td>string</td>
-<td>布尔值</td>
-<td>除了空字符串(‘’)都为true</td>
-</tr>
-<tr>
-<td>undefined、null</td>
-<td>布尔值</td>
-<td>false</td>
-</tr>
-<tr>
-<td>引用类型</td>
-<td>布尔值</td>
-<td>true</td>
-</tr>
-<tr>
-<td>number</td>
-<td>字符串</td>
-<td>8 =&gt; ‘8’</td>
-</tr>
-<tr>
-<td>Boolean、函数、Symbol</td>
-<td>字符串</td>
-<td>true =&gt; ‘true’</td>
-</tr>
-<tr>
-<td>数组</td>
-<td>字符串</td>
-<td>[1, 2] =&gt; ‘1, 2’</td>
-</tr>
-<tr>
-<td>对象</td>
-<td>字符串</td>
-<td>{} =&gt; ‘[object Object]’</td>
-</tr>
-<tr>
-<td>string</td>
-<td>数字</td>
-<td>‘8’ =&gt; 8，’a’ =&gt; NaN</td>
-</tr>
-<tr>
-<td>数组</td>
-<td>数字</td>
-<td>空数组为0，存在一个元素且为数字转成数字，其它情况NaN</td>
-</tr>
-<tr>
-<td>null</td>
-<td>数字</td>
-<td>0</td>
-</tr>
-<tr>
-<td>除了数组的引用类型</td>
-<td>数字</td>
-<td>NaN</td>
-</tr>
-<tr>
-<td>Symbol</td>
-<td>数字</td>
-<td>抛错</td>
-</tr>
-</tbody>
-</table>
-<h2 id="转Boolean"><a href="#转Boolean" class="headerlink" title="转Boolean"></a>转Boolean</h2><p>在条件判断时，除了<code>0</code>， <code>-0</code>， <code>NaN</code>，<code>undefined</code>，<code>null</code>，<code>false</code>，<code>&#39;&#39;</code>，<br>其它所以值都为true，包括对象。</p>
-<h2 id="对象转原始类型"><a href="#对象转原始类型" class="headerlink" title="对象转原始类型"></a>对象转原始类型</h2><p>对象在转类型的时候，会调用内置的 <code>Symbol.toPrimitive</code> 函数，大概的逻辑是这样的：</p>
-<p>如果已经是原始类型了，那就不需要转换了</p>
-<p>调用 <code>x.valueOf()</code>，如果转换为基础类型，就返回转换的值</p>
-<p>调用 <code>x.toString()</code>，如果转换为基础类型，就返回转换的值</p>
-<p>如果都没有返回原始类型，就会报错</p>
-<p>当然，你也可以重写 <code>Symbol.toPrimitive</code>，该方法在转原型类型时优先级最高<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">    valueOf() &#123;</span><br><span class="line">        return 1</span><br><span class="line">    &#125;,</span><br><span class="line">    toString() &#123;</span><br><span class="line">        return &apos;2&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    [Symbol.toPrimitive]() &#123;</span><br><span class="line">        return 3</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(1 + obj) // 4</span><br></pre></td></tr></table></figure></p>
-<h2 id="四则运算符"><a href="#四则运算符" class="headerlink" title="四则运算符"></a>四则运算符</h2><p>首先，先来说下加法运算符，会有两个特点：</p>
+</blockquote>
+<h2 id="正确判断-this"><a href="#正确判断-this" class="headerlink" title="正确判断 this"></a>正确判断 <code>this</code></h2><p><code>this</code> 是个容易让人混淆的概念，但只要我们理清了思路就会很容易理解。</p>
+<p>对于单个规则来说，我们可以按照下面的流程来进行判断：<br><a id="more"></a></p>
 <ul>
-<li><p>其中一方是字符串，那么就会把另一方也转为字符串</p>
-</li>
-<li><p>如果一方不是字符串或者数字，那么会将它转成字符串或者数字</p>
+<li>首先，判断函数类型<ul>
+<li>若是箭头函数，<code>this</code> 就是包裹箭头函数的第一个普通函数的 <code>this</code></li>
+<li>若是<code>apply</code>、<code>call</code>、<code>bind</code>，<code>this</code> 是第一个参数</li>
+<li>普通函数的话，要判断函数是如何被调用的<ul>
+<li><code>new</code> 的方式，<code>this</code> 被固化在实例上面</li>
+<li>除了 <code>new</code> 方式以外，判断函数是直接调用（ <code>foo()</code> ）还是通过对象调用 （ <code>obj.foo()</code> ）<ul>
+<li><code>foo()</code> 方式，<code>this</code> 为 <code>window</code></li>
+<li><code>obj.foo()</code> 方式，<code>this</code> 为 <code>obj</code></li>
+</ul>
 </li>
 </ul>
-<p>然后就是非加法运算符，只要其中一方是数字，那么另一方就会被转为数字</p>
-<h2 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h2><ol>
-<li>如果是对象，就通过 <code>Symbol.toPrimitive</code> 转换对象</li>
-<li>如果是字符串，就通过 <code>unicode</code> 字符索引来比较</li>
-</ol>
-<h2 id="vs"><a href="#vs" class="headerlink" title="== vs ==="></a>== vs ===</h2><p>对于 <code>==</code> 来说，如果对比双方的类型不一样的话，就会进行类型转换，而 <code>===</code> 不会</p>
-<p>假如我们需要对比 <code>x</code> 和 <code>y</code> 的值是否相等，就会进行如下流程：</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/img/javascriptBasis/4/this.webp" alt="image"></p>
+<p>通过这个流程，我们可以准确判断 <code>this</code>。当然，如果我们向改变 <code>this</code>，就可以采用以下方式：</p>
 <ol>
-<li>首先判断两者类型是否相等，是的话比较大小</li>
-<li>类型不相同的就会进行类型转换</li>
-<li>会先判断是否在对比 <code>undefined</code> 和 <code>null</code>，是的话就会返回 <code>true</code></li>
-<li>判断两者类型是否为 <code>string</code> 和 <code>number</code>，是的话就会将字符串转换成 <code>number</code></li>
-<li>判断其中一方是否为 <code>boolean</code>，是的话就把 <code>boolean</code> 转成 <code>number</code> 再进行判断</li>
-<li>判断其中一方是否为 <code>object</code> 且另一方为 <code>string</code>、<code>number</code> 或者 <code>symbol</code>，是的话就会把 <code>object</code> 转为原始类型再进行判断 </li>
+<li>使用箭头函数</li>
+<li>使用 <code>apply</code>、<code>call</code>、<code>bind</code> 方法</li>
+<li>当然，构造函数也可以改变 <code>this</code>，通过对象调用也行</li>
+</ol>
+<h2 id="手写-apply、call、bind"><a href="#手写-apply、call、bind" class="headerlink" title="手写 apply、call、bind"></a>手写 <code>apply</code>、<code>call</code>、<code>bind</code></h2><p>关于 <code>apply</code>、<code>call</code>、<code>bind</code>，都可以改变 <code>this</code> 的指向，但稍稍有些不同。</p>
+<ol>
+<li><code>apply</code> 和 <code>call</code> 的区别<br> 其实 <code>apply</code> 和 <code>call</code> 基本类似，他们的区别主要是传参不同<blockquote>
+<p><code>call</code> 的语法：<br>fun.call(thisArg[, arg1[, arg2[, …]]])<br><code>apply</code> 的语法：<br>fun.apply(thisArg, [argsArray])<br>所以 <code>apply</code> 和 <code>call</code> 的区别是 <code>call</code> 方法接受的是若干个参数列表，而 <code>apply</code> 接收的是一个包含多个参数的数组。</p>
+</blockquote>
+</li>
+<li><code>bind</code> 和 <code>apply</code>、<code>call</code> 区别<blockquote>
+<p>bind()方法创建一个新的函数, 当被调用时，将其this关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列。<br>从这句话，我们可以看出，<code>bind</code> 是创建一个新的函数，需要我们手动去执行。<br>这是 <code>bind</code> 与 <code>apply</code> 、<code>call</code> 的主要区别。</p>
+</blockquote>
+</li>
+<li>手写 <code>apply</code>、<code>call</code>、<code>bind</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">    Function.prototype.myCall = function(context) &#123;</span><br><span class="line">    if (typeof this !== &apos;function&apos;) &#123;</span><br><span class="line">        throw new TypeError(&apos;Error&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">    context = context || window</span><br><span class="line">    context.fn = this</span><br><span class="line">    const args = [...arguments].slice(1)</span><br><span class="line">    const result = context.fn(...args)</span><br><span class="line">    delete context.fn</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Function.prototype.myApply = function(context) &#123;</span><br><span class="line">    if (typeof this !== &apos;function&apos;) &#123;</span><br><span class="line">        throw new TypeError(&apos;Error&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">    context = context || window</span><br><span class="line">    context.fn = this</span><br><span class="line">    let result</span><br><span class="line">    if (arguments[1]) &#123;</span><br><span class="line">        result = context.fn(...arguments[1])</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        result = context.fn()</span><br><span class="line">    &#125;</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Function.prototype.myBind = function(context) &#123;</span><br><span class="line">    if (typeof this !== &apos;function&apos;) &#123;</span><br><span class="line">        throw new TypeError(&apos;Error&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">    const _this = this</span><br><span class="line">    const args = [...arguments].slice(1)</span><br><span class="line"></span><br><span class="line">    return function F() &#123;</span><br><span class="line">        if (this instanceof F) &#123;</span><br><span class="line">            return new _this(...args, ...arguments)</span><br><span class="line">        &#125;</span><br><span class="line">        return _this.apply(context, args.concat(...arguments))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var obj = &#123;</span><br><span class="line">    name: &apos;这是&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function printName (fname, lname) &#123;</span><br><span class="line">    console.log(this)</span><br><span class="line">    console.log(`$&#123;this.name&#125; $&#123;fname&#125;$&#123;lname&#125;`)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">printName(&apos;liao&apos;, &apos;rui&apos;)</span><br><span class="line">printName.myCall(obj, &apos;liao&apos;, &apos;rui&apos;)</span><br><span class="line">printName.myApply(obj, [&apos;liao&apos;, &apos;rui&apos;])</span><br><span class="line">printName.myBind(obj, &apos;liao&apos;, &apos;rui&apos;)()</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 <p>本文完， 感谢阅读。</p>
 
@@ -355,7 +290,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://www.ruizer.com/2019/07/15/javascript-basis-类型转换/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.ruizer.com/2019/07/16/javascript-basis-this指向相关/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -369,18 +304,18 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2019/07/16/javascript-basis-this指向相关/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/22/table-grad-表格列宽拖拽/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          JavaScript相关知识点集锦(四)：this 、箭头函数、以及apply、call与bind
+          原生JS实现table表格列宽拖拽
         
       </div>
     </a>
   
   
-    <a href="/2019/07/13/window-post-message-for-wechat-login/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">利用 postMessage 的骚操作来实现微信网页授权登陆</div>
+    <a href="/2019/07/15/javascript-basis-类型转换/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript相关知识点集锦(三)：类型转换</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -407,7 +342,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#转Boolean"><span class="toc-number">1.</span> <span class="toc-text">转Boolean</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象转原始类型"><span class="toc-number">2.</span> <span class="toc-text">对象转原始类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四则运算符"><span class="toc-number">3.</span> <span class="toc-text">四则运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#比较运算符"><span class="toc-number">4.</span> <span class="toc-text">比较运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vs"><span class="toc-number">5.</span> <span class="toc-text">== vs ===</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#正确判断-this"><span class="toc-number">1.</span> <span class="toc-text">正确判断 this</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#手写-apply、call、bind"><span class="toc-number">2.</span> <span class="toc-text">手写 apply、call、bind</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -465,7 +400,7 @@ var _hmt = _hmt || [];
 			</div>
 			<div class="footer-right">
 				
-				<span id="/2019/07/15/javascript-basis-类型转换/" class="leancloud-visitors" data-flag-title="JavaScript相关知识点集锦(三)：类型转换">
+				<span id="/2019/07/16/javascript-basis-this指向相关/" class="leancloud-visitors" data-flag-title="JavaScript相关知识点集锦(四)：this 、箭头函数、以及apply、call与bind">
 					<em class="post-meta-item-text">阅读量 </em>
 					<i class="leancloud-visitors-count">0</i>
 				</span>
