@@ -5,21 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://www.ruizer.com">
+  <link rel="dns-prefetch" href="https://ruizer.github.io">
   <title>JavaScript相关知识点集锦(二)：typeof 与 instanceof | Ruizer&#39;Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本章主要分为两部分：typeof 是否能正确的判断类型、instanceof 能正确判断类型的原理  typeof 能否正确判断类型当然，typeof 对于原始类型来说，除了null都能准备判断类型">
-<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript相关知识点集锦(二)：typeof 与 instanceof">
-<meta property="og:url" content="https://www.ruizer.com/2019/07/11/javascript-basis-typeof-instanceof/index.html">
+<meta property="og:url" content="https://ruizer.github.io/2019/07/11/javascript-basis-typeof-instanceof/index.html">
 <meta property="og:site_name" content="Ruizer&#39;Blog">
 <meta property="og:description" content="本章主要分为两部分：typeof 是否能正确的判断类型、instanceof 能正确判断类型的原理  typeof 能否正确判断类型当然，typeof 对于原始类型来说，除了null都能准备判断类型">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-22T15:25:04.533Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-11T11:52:41.000Z">
+<meta property="article:modified_time" content="2020-12-21T05:39:32.599Z">
+<meta property="article:author" content="Ruizer">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript相关知识点集锦(二)：typeof 与 instanceof">
-<meta name="twitter:description" content="本章主要分为两部分：typeof 是否能正确的判断类型、instanceof 能正确判断类型的原理  typeof 能否正确判断类型当然，typeof 对于原始类型来说，除了null都能准备判断类型">
   
   
     <link rel="icon" href="/assets/img/favicon.png">
@@ -45,7 +45,7 @@ var _hmt = _hmt || [];
 </script>
 
 
-</head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -59,7 +59,7 @@ var _hmt = _hmt || [];
 			<img src="/assets/img/avatar.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">Ruizer</a></h1>
+		  <h1 class="header-author"><a href="/"></a></h1>
 		</hgroup>
 		
 
@@ -107,7 +107,7 @@ var _hmt = _hmt || [];
 				<img src="/assets/img/avatar.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Ruizer</h1>
+			  <h1 class="header-author js-header-author"></h1>
 			</hgroup>
 			
 			
@@ -168,12 +168,18 @@ var _hmt = _hmt || [];
         <blockquote>
 <p>本章主要分为两部分：typeof 是否能正确的判断类型、instanceof 能正确判断类型的原理</p>
 </blockquote>
-<h2 id="typeof-能否正确判断类型"><a href="#typeof-能否正确判断类型" class="headerlink" title="typeof 能否正确判断类型"></a>typeof 能否正确判断类型</h2><p>当然，<code>typeof</code> 对于原始类型来说，除了<code>null</code>都能准备判断类型<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typeof 123 // &apos;number&apos;</span><br><span class="line">typeof &apos;123&apos; // &apos;string&apos;</span><br><span class="line">typeof undefined // &apos;undefined&apos;</span><br><span class="line">typeof true // &apos;boolean&apos;</span><br><span class="line">typeof Symbol() // symbol</span><br></pre></td></tr></table></figure></p>
-<p><code>typeof</code> 对于对象来说，除了函数都会输出<code>object</code>，所以<code>typeof</code> 并不能准确判断变量类型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">typeof &#123;&#125; // &apos;object&apos;</span><br><span class="line">typeof [] // &apos;object&apos;</span><br><span class="line">typeof console.log // &apos;function&apos;</span><br></pre></td></tr></table></figure></p>
-<p>那当我们需要准确判断对象类型时，就可以使用<code>instanceof</code>，因为其内部机制是通过原型来判断的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;&#125;</span><br><span class="line">const p = new Person()</span><br><span class="line">p instanceof Person // true</span><br><span class="line"></span><br><span class="line">const str = &apos;hello world&apos;</span><br><span class="line">str instanceof String // false</span><br><span class="line"></span><br><span class="line">const str1 = new String(&apos;hello world&apos;)</span><br><span class="line">str1 instanceof String // true</span><br></pre></td></tr></table></figure></p>
-<p>我们可以看到，对于原始类型<code>instanceof</code> 并不能准确判断其类型，但是我们利用<code>Symbol.hasInstance</code>来实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class PrimitiveString &#123;</span><br><span class="line">    static [Symbol.hasInstance](instance) &#123;</span><br><span class="line">        return typeof instance === &apos;string&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(&apos;hello world&apos; instanceof PrimitiveString) // true</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/hasInstance" target="_blank" rel="noopener">Symbol.hasInstance</a> 可以让我们自定义 <code>instanceof</code> 操作符在某个类上的行为，<br>所以 <code>&#39;hello world&#39; instanceof PrimitiveString</code> 就相当于 <code>typeof &#39;hello world&#39; === &#39;string&#39;</code></p>
-<h2 id="instanceof-的原理是什么？"><a href="#instanceof-的原理是什么？" class="headerlink" title="instanceof 的原理是什么？"></a>instanceof 的原理是什么？</h2><p>上面提到过 <code>instanceof</code> 能够准确判断对象类型，因为其内部机制是通过判断对象的原型链中能不能找到类型的 <code>prototype</code>，<br>下面是简单的实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function myInstanceof(left, right) &#123;</span><br><span class="line">    let prototype = right.prototype</span><br><span class="line">    left = left.__proto__</span><br><span class="line">    while(true) &#123;</span><br><span class="line">        if (left === null || left === undefined) &#123;</span><br><span class="line">            return false</span><br><span class="line">        &#125;</span><br><span class="line">        if (prototype === left) &#123;</span><br><span class="line">            return true</span><br><span class="line">        &#125;</span><br><span class="line">        left = left.__proto__</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="typeof-能否正确判断类型"><a href="#typeof-能否正确判断类型" class="headerlink" title="typeof 能否正确判断类型"></a>typeof 能否正确判断类型</h2><p>当然，<code>typeof</code> 对于原始类型来说，除了<code>null</code>都能准备判断类型</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typeof 123 &#x2F;&#x2F; &#39;number&#39;</span><br><span class="line">typeof &#39;123&#39; &#x2F;&#x2F; &#39;string&#39;</span><br><span class="line">typeof undefined &#x2F;&#x2F; &#39;undefined&#39;</span><br><span class="line">typeof true &#x2F;&#x2F; &#39;boolean&#39;</span><br><span class="line">typeof Symbol() &#x2F;&#x2F; symbol</span><br></pre></td></tr></table></figure>
+<p><code>typeof</code> 对于对象来说，除了函数都会输出<code>object</code>，所以<code>typeof</code> 并不能准确判断变量类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">typeof &#123;&#125; &#x2F;&#x2F; &#39;object&#39;</span><br><span class="line">typeof [] &#x2F;&#x2F; &#39;object&#39;</span><br><span class="line">typeof console.log &#x2F;&#x2F; &#39;function&#39;</span><br></pre></td></tr></table></figure>
+<p>那当我们需要准确判断对象类型时，就可以使用<code>instanceof</code>，因为其内部机制是通过原型来判断的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;&#125;</span><br><span class="line">const p &#x3D; new Person()</span><br><span class="line">p instanceof Person &#x2F;&#x2F; true</span><br><span class="line"></span><br><span class="line">const str &#x3D; &#39;hello world&#39;</span><br><span class="line">str instanceof String &#x2F;&#x2F; false</span><br><span class="line"></span><br><span class="line">const str1 &#x3D; new String(&#39;hello world&#39;)</span><br><span class="line">str1 instanceof String &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+<p>我们可以看到，对于原始类型<code>instanceof</code> 并不能准确判断其类型，但是我们利用<code>Symbol.hasInstance</code>来实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class PrimitiveString &#123;</span><br><span class="line">    static [Symbol.hasInstance](instance) &#123;</span><br><span class="line">        return typeof instance &#x3D;&#x3D;&#x3D; &#39;string&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(&#39;hello world&#39; instanceof PrimitiveString) &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/hasInstance">Symbol.hasInstance</a> 可以让我们自定义 <code>instanceof</code> 操作符在某个类上的行为，<br>所以 <code>&#39;hello world&#39; instanceof PrimitiveString</code> 就相当于 <code>typeof &#39;hello world&#39; === &#39;string&#39;</code></p>
+<h2 id="instanceof-的原理是什么？"><a href="#instanceof-的原理是什么？" class="headerlink" title="instanceof 的原理是什么？"></a>instanceof 的原理是什么？</h2><p>上面提到过 <code>instanceof</code> 能够准确判断对象类型，因为其内部机制是通过判断对象的原型链中能不能找到类型的 <code>prototype</code>，<br>下面是简单的实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function myInstanceof(left, right) &#123;</span><br><span class="line">    let prototype &#x3D; right.prototype</span><br><span class="line">    left &#x3D; left.__proto__</span><br><span class="line">    while(true) &#123;</span><br><span class="line">        if (left &#x3D;&#x3D;&#x3D; null || left &#x3D;&#x3D;&#x3D; undefined) &#123;</span><br><span class="line">            return false</span><br><span class="line">        &#125;</span><br><span class="line">        if (prototype &#x3D;&#x3D;&#x3D; left) &#123;</span><br><span class="line">            return true</span><br><span class="line">        &#125;</span><br><span class="line">        left &#x3D; left.__proto__</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>大体实现思路：</p>
 <ul>
 <li>首先获取类型的原型</li>
@@ -258,7 +264,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://www.ruizer.com/2019/07/11/javascript-basis-typeof-instanceof/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://ruizer.github.io/2019/07/11/javascript-basis-typeof-instanceof/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -310,7 +316,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#typeof-能否正确判断类型"><span class="toc-number">1.</span> <span class="toc-text">typeof 能否正确判断类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#instanceof-的原理是什么？"><span class="toc-number">2.</span> <span class="toc-text">instanceof 的原理是什么？</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#typeof-%E8%83%BD%E5%90%A6%E6%AD%A3%E7%A1%AE%E5%88%A4%E6%96%AD%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">typeof 能否正确判断类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#instanceof-%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">instanceof 的原理是什么？</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -330,28 +336,29 @@ var _hmt = _hmt || [];
   
   
   
-    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
-      <div id="vcomment" class="comment"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-  var notify = 'false' == true ? true : false;
-  var verify = 'false' == true ? true : false;
-  window.onload = function () {
-    new Valine({
-      el: '.comment',
-      notify: notify,
-      verify: verify,
-      app_id: "XmHjxBHTVlbpcMO6hSa1EX48-gzGzoHsz",
-      app_key: "yiKxyO2NEeHTHM9wCdvjaWoa",
-      placeholder: "Just go go",
-      avatar: "mm",
-      visitor: true
-    });
-  }
-</script>
-    </section>
+
   
+  
+  
+    <div id="gitalk-container" style="padding: 0 32px;"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<script src="https://priesttomb.github.io/js/md5.min.js"></script>
+<script type="text/javascript">
+  var distractionFreeMode = 'true' === 'true' ? true : false;
+  window.onload = function () {
+    new Gitalk({
+      clientID: "8ec496032f979ccd0ff0",
+      clientSecret: "7ee716fec20ce4b2212beb3bcd0ee9a2d59712ad",
+      repo: "ruizer.github.io",
+      owner: "ruizer",
+      admin: "ruizer",
+      id: md5(location.pathname),
+      distractionFreeMode: distractionFreeMode
+    }).render('gitalk-container')
+  }
+
+</script>
 
   
 
@@ -363,7 +370,7 @@ var _hmt = _hmt || [];
 	<div class="outer">
 		<div id="footer-info">
 			<div class="footer-left">
-				&copy; 2019 Ruizer
+				&copy; 2020 Ruizer
 				<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 			</div>
 			<div class="footer-right">
@@ -445,15 +452,11 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -469,11 +472,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">目标</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color1">table</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,7 +492,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">table</a>
+                <a href="javascript:void(0)" class="js-tag color2">postMessage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">微信登陆</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,18 +513,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">cli</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">postMessage</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">微信登陆</a>
               </li>
              
               <li class="article-tag-list-item">

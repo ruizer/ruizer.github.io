@@ -5,25 +5,27 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://www.ruizer.com">
+  <link rel="dns-prefetch" href="https://ruizer.github.io">
   <title>利用 postMessage 的骚操作来实现微信网页授权登陆 | Ruizer&#39;Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="之前对于postMessage并不是特别熟悉，只是看过文档、写过demo。但这次在做微信网页授权登陆的时候，用到了postMessage，用得并不是很顺手，所以想着写篇文章记录一下，并且也重新写了个demo，源码：post-message  postMessage概念window.postMessage() 方法可以安全地实现跨源通信。通常，对于两个不同页面的脚本，只有当执行它们的页面位于具有相">
-<meta name="keywords" content="postMessage,跨域,微信登陆">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用 postMessage 的骚操作来实现微信网页授权登陆">
-<meta property="og:url" content="https://www.ruizer.com/2019/07/13/window-post-message-for-wechat-login/index.html">
+<meta property="og:url" content="https://ruizer.github.io/2019/07/13/window-post-message-for-wechat-login/index.html">
 <meta property="og:site_name" content="Ruizer&#39;Blog">
 <meta property="og:description" content="之前对于postMessage并不是特别熟悉，只是看过文档、写过demo。但这次在做微信网页授权登陆的时候，用到了postMessage，用得并不是很顺手，所以想着写篇文章记录一下，并且也重新写了个demo，源码：post-message  postMessage概念window.postMessage() 方法可以安全地实现跨源通信。通常，对于两个不同页面的脚本，只有当执行它们的页面位于具有相">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.ruizer.com/assets/img/wechat-postmeassge/open-window.png">
-<meta property="og:image" content="https://www.ruizer.com/assets/img/wechat-postmeassge/message-info.png">
-<meta property="og:image" content="https://www.ruizer.com/assets/img/wechat-postmeassge/after-msg-handle.png">
-<meta property="og:updated_time" content="2019-07-22T15:25:38.867Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ruizer.github.io/assets/img/wechat-postmeassge/open-window.png">
+<meta property="og:image" content="https://ruizer.github.io/assets/img/wechat-postmeassge/message-info.png">
+<meta property="og:image" content="https://ruizer.github.io/assets/img/wechat-postmeassge/after-msg-handle.png">
+<meta property="article:published_time" content="2019-07-13T04:12:40.000Z">
+<meta property="article:modified_time" content="2020-12-21T06:06:06.448Z">
+<meta property="article:author" content="Ruizer">
+<meta property="article:tag" content="postMessage">
+<meta property="article:tag" content="跨域">
+<meta property="article:tag" content="微信登陆">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用 postMessage 的骚操作来实现微信网页授权登陆">
-<meta name="twitter:description" content="之前对于postMessage并不是特别熟悉，只是看过文档、写过demo。但这次在做微信网页授权登陆的时候，用到了postMessage，用得并不是很顺手，所以想着写篇文章记录一下，并且也重新写了个demo，源码：post-message  postMessage概念window.postMessage() 方法可以安全地实现跨源通信。通常，对于两个不同页面的脚本，只有当执行它们的页面位于具有相">
-<meta name="twitter:image" content="https://www.ruizer.com/assets/img/wechat-postmeassge/open-window.png">
+<meta name="twitter:image" content="https://ruizer.github.io/assets/img/wechat-postmeassge/open-window.png">
   
   
     <link rel="icon" href="/assets/img/favicon.png">
@@ -49,7 +51,7 @@ var _hmt = _hmt || [];
 </script>
 
 
-</head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -63,7 +65,7 @@ var _hmt = _hmt || [];
 			<img src="/assets/img/avatar.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">Ruizer</a></h1>
+		  <h1 class="header-author"><a href="/"></a></h1>
 		</hgroup>
 		
 
@@ -111,7 +113,7 @@ var _hmt = _hmt || [];
 				<img src="/assets/img/avatar.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Ruizer</h1>
+			  <h1 class="header-author js-header-author"></h1>
 			</hgroup>
 			
 			
@@ -170,16 +172,18 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>之前对于postMessage并不是特别熟悉，只是看过文档、写过demo。但这次在做微信网页授权登陆的时候，用到了postMessage，用得并不是很顺手，所以想着写篇文章记录一下，并且也重新写了个<a href="https://www.ruizer.cn/demo/#/post-message" target="_blank" rel="noopener">demo</a>，源码：<a href="https://github.com/ruizer/demo/blob/master/src/views/post-message/post-message.vue" target="_blank" rel="noopener">post-message</a></p>
+<p>之前对于postMessage并不是特别熟悉，只是看过文档、写过demo。但这次在做微信网页授权登陆的时候，用到了postMessage，用得并不是很顺手，所以想着写篇文章记录一下，并且也重新写了个<a href="https://ruizer.github.io/demo/#/post-message">demo</a>，源码：<a target="_blank" rel="noopener" href="https://github.com/ruizer/demo/blob/master/src/views/post-message/post-message.vue">post-message</a></p>
 </blockquote>
-<h2 id="postMessage概念"><a href="#postMessage概念" class="headerlink" title="postMessage概念"></a>postMessage概念</h2><p><code>window.postMessage()</code> 方法可以安全地实现跨源通信。通常，对于两个不同页面的脚本，只有当执行它们的页面位于具有相同的协议（通常为<code>https</code>），端口号（<code>443</code>为<code>https</code>的默认值），以及主机  (两个页面的模数 <code>Document.domain</code> 设置为相同的值) 时，这两个脚本才能相互通信。<code>window.postMessage()</code> 方法提供了一种受控机制来规避此限制，只要正确的使用，这种方法就很安全。<br><a id="more"></a></p>
+<h2 id="postMessage概念"><a href="#postMessage概念" class="headerlink" title="postMessage概念"></a>postMessage概念</h2><p><code>window.postMessage()</code> 方法可以安全地实现跨源通信。通常，对于两个不同页面的脚本，只有当执行它们的页面位于具有相同的协议（通常为<code>https</code>），端口号（<code>443</code>为<code>https</code>的默认值），以及主机  (两个页面的模数 <code>Document.domain</code> 设置为相同的值) 时，这两个脚本才能相互通信。<code>window.postMessage()</code> 方法提供了一种受控机制来规避此限制，只要正确的使用，这种方法就很安全。</p>
+<a id="more"></a>
+
 <p><code>window.postMessage()</code> 方法被调用时，会在所有页面脚本执行完毕之后（e.g., 在该方法之后设置的事件、之前设置的 <code>timeout</code> 事件,etc.）向目标窗口派发一个 <code>MessageEvent</code> 消息。 该   <code>MessageEvent</code> 消息有四个属性需要注意： <code>message</code> 属性表示该<code>message</code> 的类型； <code>data</code> 属性为 <code>window.postMessage</code> 的第一个参数；<code>origin</code> 属性表示调用 <code>window.postMessage()</code> 方法时调用页面的当前状态； <code>source</code> 属性记录调用 <code>window.postMessage()</code> 方法的窗口信息。</p>
 <h2 id="大体思路"><a href="#大体思路" class="headerlink" title="大体思路"></a>大体思路</h2><p>做过微信网页授权的人应该都知道，用户扫码过后，微信后台与我们的后台会有一个响应。但对于前后端分离项目，我们的后台只能做重定向的操作才能让前端知道用户使用微信登陆成功了（如果你在前端做定时任务一直刷新，当我没说。再者登陆内嵌存在多个页面中，并且登陆成功后需要获取多个数据，这时候后台直接重定向就不是太方便了。</p>
 <p>所以，这时候我们需要一个专门做登陆验证的页面，后台重定向到这个页面，然后利用 <code>postMessage</code> 进行通信，告诉我们用户微信登陆成功了，可以获取一些数据了</p>
 <h2 id="父窗口"><a href="#父窗口" class="headerlink" title="父窗口"></a>父窗口</h2><blockquote>
 <p>网页接入微信登陆的时候，登陆页面即为父窗口。</p>
 </blockquote>
-<p>首先，当用户点击微信登陆时，使用<code>window.open()</code>打开一个子窗口，并监听message事件，子窗口链接就是微信提供的链接，地址可见<a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419316505&amp;token=&amp;lang=zh_CN" target="_blank" rel="noopener">网站应用微信登录开发指南</a></p>
+<p>首先，当用户点击微信登陆时，使用<code>window.open()</code>打开一个子窗口，并监听message事件，子窗口链接就是微信提供的链接，地址可见<a target="_blank" rel="noopener" href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419316505&token=&lang=zh_CN">网站应用微信登录开发指南</a></p>
 <p><img src="/assets/img/wechat-postmeassge/open-window.png" alt="打开子窗口"></p>
 <p>可以看见，图中有个<code>setInterval</code>定时任务，这是为了监听子窗口关闭后清除<code>message</code>监听事件</p>
 <p><code>handleMessage</code>就是消息接收处理函数，它会接收一个参数<code>e</code>，<code>e</code>是一个对象：<br><img src="/assets/img/wechat-postmeassge/message-info.png" alt="消息对象"></p>
@@ -192,7 +196,8 @@ var _hmt = _hmt || [];
 <p>微信二维码页面、重定向页即为子窗口</p>
 </blockquote>
 <p>当然微信二维码页面我们是做不了任何操作的，因为这是微信内部代码，也不在同个域。但是用户扫码授权登陆后重定向至我们自定义的重定向页，这时候我们可以在重定向页面向父窗口（即登录页）传递信息，父窗口可以根据这些信息知道用户是否登陆了，并进行相应的操作。</p>
-<p>什么时候传递信息呢？我们可以把登陆成功信息拼接在重定向地址上面，前端解析地址得到信息后就可以把这些信息传递给父窗口：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 先解析地址，得到数据，然后使用 window.opener.postMessage 传递数据</span><br><span class="line">window.opener.postMessage(数据, window.location);</span><br></pre></td></tr></table></figure></p>
+<p>什么时候传递信息呢？我们可以把登陆成功信息拼接在重定向地址上面，前端解析地址得到信息后就可以把这些信息传递给父窗口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 先解析地址，得到数据，然后使用 window.opener.postMessage 传递数据</span><br><span class="line">window.opener.postMessage(数据, window.location);</span><br></pre></td></tr></table></figure>
 <p>本文完， 感谢阅读。</p>
 
       
@@ -279,7 +284,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://www.ruizer.com/2019/07/13/window-post-message-for-wechat-login/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://ruizer.github.io/2019/07/13/window-post-message-for-wechat-login/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -293,7 +298,7 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2019/07/15/javascript-basis-类型转换/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/15/javascript-basis-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -338,28 +343,29 @@ var _hmt = _hmt || [];
   
   
   
-    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
-      <div id="vcomment" class="comment"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-  var notify = 'false' == true ? true : false;
-  var verify = 'false' == true ? true : false;
-  window.onload = function () {
-    new Valine({
-      el: '.comment',
-      notify: notify,
-      verify: verify,
-      app_id: "XmHjxBHTVlbpcMO6hSa1EX48-gzGzoHsz",
-      app_key: "yiKxyO2NEeHTHM9wCdvjaWoa",
-      placeholder: "Just go go",
-      avatar: "mm",
-      visitor: true
-    });
-  }
-</script>
-    </section>
+
   
+  
+  
+    <div id="gitalk-container" style="padding: 0 32px;"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<script src="https://priesttomb.github.io/js/md5.min.js"></script>
+<script type="text/javascript">
+  var distractionFreeMode = 'true' === 'true' ? true : false;
+  window.onload = function () {
+    new Gitalk({
+      clientID: "8ec496032f979ccd0ff0",
+      clientSecret: "7ee716fec20ce4b2212beb3bcd0ee9a2d59712ad",
+      repo: "ruizer.github.io",
+      owner: "ruizer",
+      admin: "ruizer",
+      id: md5(location.pathname),
+      distractionFreeMode: distractionFreeMode
+    }).render('gitalk-container')
+  }
+
+</script>
 
   
 
@@ -371,7 +377,7 @@ var _hmt = _hmt || [];
 	<div class="outer">
 		<div id="footer-info">
 			<div class="footer-left">
-				&copy; 2019 Ruizer
+				&copy; 2020 Ruizer
 				<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 			</div>
 			<div class="footer-right">
@@ -453,15 +459,11 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -477,11 +479,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">目标</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color1">table</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -501,7 +499,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">table</a>
+                <a href="javascript:void(0)" class="js-tag color2">postMessage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">微信登陆</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -514,18 +520,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">cli</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">postMessage</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">微信登陆</a>
               </li>
              
               <li class="article-tag-list-item">

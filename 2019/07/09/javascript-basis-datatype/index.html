@@ -5,23 +5,23 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://www.ruizer.com">
+  <link rel="dns-prefetch" href="https://ruizer.github.io">
   <title>JavaScript相关知识点集锦(一)：数据类型 | Ruizer&#39;Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言 JavaScript是每个前端开发人员的基础，但是许多知识点会经常遗忘，所以就有了这一系列的文章来整理与总结，用来加深我的理解与学习">
-<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript相关知识点集锦(一)：数据类型">
-<meta property="og:url" content="https://www.ruizer.com/2019/07/09/javascript-basis-datatype/index.html">
+<meta property="og:url" content="https://ruizer.github.io/2019/07/09/javascript-basis-datatype/index.html">
 <meta property="og:site_name" content="Ruizer&#39;Blog">
 <meta property="og:description" content="前言 JavaScript是每个前端开发人员的基础，但是许多知识点会经常遗忘，所以就有了这一系列的文章来整理与总结，用来加深我的理解与学习">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.ruizer.com/assets/img/javascriptBasis/one/null-toSring.png">
-<meta property="og:updated_time" content="2019-07-22T15:24:59.741Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ruizer.github.io/assets/img/javascriptBasis/one/null-toSring.png">
+<meta property="article:published_time" content="2019-07-09T13:31:49.000Z">
+<meta property="article:modified_time" content="2020-12-21T05:39:32.598Z">
+<meta property="article:author" content="Ruizer">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript相关知识点集锦(一)：数据类型">
-<meta name="twitter:description" content="前言 JavaScript是每个前端开发人员的基础，但是许多知识点会经常遗忘，所以就有了这一系列的文章来整理与总结，用来加深我的理解与学习">
-<meta name="twitter:image" content="https://www.ruizer.com/assets/img/javascriptBasis/one/null-toSring.png">
+<meta name="twitter:image" content="https://ruizer.github.io/assets/img/javascriptBasis/one/null-toSring.png">
   
   
     <link rel="icon" href="/assets/img/favicon.png">
@@ -47,7 +47,7 @@ var _hmt = _hmt || [];
 </script>
 
 
-</head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -61,7 +61,7 @@ var _hmt = _hmt || [];
 			<img src="/assets/img/avatar.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">Ruizer</a></h1>
+		  <h1 class="header-author"><a href="/"></a></h1>
 		</hgroup>
 		
 
@@ -109,7 +109,7 @@ var _hmt = _hmt || [];
 				<img src="/assets/img/avatar.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Ruizer</h1>
+			  <h1 class="header-author js-header-author"></h1>
 			</hgroup>
 			
 			
@@ -168,13 +168,15 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>JavaScript是每个前端开发人员的基础，但是许多知识点会经常遗忘，所以就有了这一系列的文章来整理与总结，用来加深我的理解与学习<br><a id="more"></a></p>
+<p>JavaScript是每个前端开发人员的基础，但是许多知识点会经常遗忘，所以就有了这一系列的文章来整理与总结，用来加深我的理解与学习</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><blockquote>
 <p>JavaScript的数据类型分为两类：原始类型（primitive type)和对象类型（object type）</p>
 </blockquote>
 <h3 id="原始类型"><a href="#原始类型" class="headerlink" title="原始类型"></a>原始类型</h3><blockquote>
 <p>原始类型有哪几种？</p>
+</blockquote>
 <ul>
 <li>number</li>
 <li>string</li>
@@ -183,7 +185,6 @@ var _hmt = _hmt || [];
 <li>boolean</li>
 <li>symbol</li>
 </ul>
-</blockquote>
 <p>首先原始类型存储的都是值，所以并不能调用函数，比如<code>null.toString()</code>：</p>
 <p><img src="/assets/img/javascriptBasis/one/null-toSring.png" alt="image"></p>
 <p>可能你会有点奇怪，为什么<code>&#39;1&#39;.toSring()</code>可以调用。这是因为，在这种情况下，<code>&#39;1&#39;</code>已经被强转化为<code>String</code>类型也就是对象类型了，所以是可以调用<code>toSring()</code>函数的。</p>
@@ -193,11 +194,12 @@ var _hmt = _hmt || [];
 </blockquote>
 <p>在JS中，当然除了原始类型其他都是对象类型。对象类型与原始类型主要不同是，对象类型存储的是地址（指针），而原始类型存储的是值。</p>
 <p>当你创建一个对象类型的时候，计算机就会在内存中开辟一个空间用来存储这些值，但是我们需要找到这个空间，就需要这个空间的地址(一个指针)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const a = &#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>对于常量<code>a</code>来说，假设内存地址为<code>#001</code>，那么在地址<code>#001</code>的位置放了值<code>{}</code>，常量<code>a</code>存放了地址(指针)<code>#001</code>，接下来：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a = &#123;&#125;</span><br><span class="line">const b = a</span><br><span class="line">a.k = &apos;obj&apos;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const a &#x3D; &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>对于常量<code>a</code>来说，假设内存地址为<code>#001</code>，那么在地址<code>#001</code>的位置放了值<code>&#123;&#125;</code>，常量<code>a</code>存放了地址(指针)<code>#001</code>，接下来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a &#x3D; &#123;&#125;</span><br><span class="line">const b &#x3D; a</span><br><span class="line">a.k &#x3D; &#39;obj&#39;</span><br></pre></td></tr></table></figure>
 <p>当我们赋值给另一个变量时，其实复制的原本变量是地址(指针)，也就是说变量<code>b</code>存放的是地址(指针)<code>#001</code>。当我们进行修改的时候，就会修改存放在地址(指针)<code>#001</code>上的值，所以导致了<code>a</code>、<code>b</code>两个变量的值改变。</p>
 <p>接下来我们来看函数参数是对象的情况：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function person(p) &#123;</span><br><span class="line">    p.age = 24</span><br><span class="line">    p = &#123;</span><br><span class="line">        name: &apos;Tom&apos;,</span><br><span class="line">        age: 30</span><br><span class="line">    &#125;</span><br><span class="line">    return p</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const p1 = &#123;</span><br><span class="line">    name: &apos;Mike&apos;,</span><br><span class="line">    age: 18</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const p2 = person(p1)</span><br><span class="line">console.log(p1) // &#123;name: &quot;Mike&quot;, age: 24&#125;</span><br><span class="line">console.log(p2) // &#123;name: &quot;Tom&quot;, age: 30&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function person(p) &#123;</span><br><span class="line">    p.age &#x3D; 24</span><br><span class="line">    p &#x3D; &#123;</span><br><span class="line">        name: &#39;Tom&#39;,</span><br><span class="line">        age: 30</span><br><span class="line">    &#125;</span><br><span class="line">    return p</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const p1 &#x3D; &#123;</span><br><span class="line">    name: &#39;Mike&#39;,</span><br><span class="line">    age: 18</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const p2 &#x3D; person(p1)</span><br><span class="line">console.log(p1) &#x2F;&#x2F; &#123;name: &quot;Mike&quot;, age: 24&#125;</span><br><span class="line">console.log(p2) &#x2F;&#x2F; &#123;name: &quot;Tom&quot;, age: 30&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>为什么结果是那样的呢？</p>
 <ul>
 <li>首先，函数传参传的是指针的副本</li>
@@ -282,7 +284,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://www.ruizer.com/2019/07/09/javascript-basis-datatype/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://ruizer.github.io/2019/07/09/javascript-basis-datatype/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -334,7 +336,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-number">2.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原始类型"><span class="toc-number">2.1.</span> <span class="toc-text">原始类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象类型"><span class="toc-number">2.2.</span> <span class="toc-text">对象类型</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text">原始类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.</span> <span class="toc-text">对象类型</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -354,28 +356,29 @@ var _hmt = _hmt || [];
   
   
   
-    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
-      <div id="vcomment" class="comment"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-  var notify = 'false' == true ? true : false;
-  var verify = 'false' == true ? true : false;
-  window.onload = function () {
-    new Valine({
-      el: '.comment',
-      notify: notify,
-      verify: verify,
-      app_id: "XmHjxBHTVlbpcMO6hSa1EX48-gzGzoHsz",
-      app_key: "yiKxyO2NEeHTHM9wCdvjaWoa",
-      placeholder: "Just go go",
-      avatar: "mm",
-      visitor: true
-    });
-  }
-</script>
-    </section>
+
   
+  
+  
+    <div id="gitalk-container" style="padding: 0 32px;"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<script src="https://priesttomb.github.io/js/md5.min.js"></script>
+<script type="text/javascript">
+  var distractionFreeMode = 'true' === 'true' ? true : false;
+  window.onload = function () {
+    new Gitalk({
+      clientID: "8ec496032f979ccd0ff0",
+      clientSecret: "7ee716fec20ce4b2212beb3bcd0ee9a2d59712ad",
+      repo: "ruizer.github.io",
+      owner: "ruizer",
+      admin: "ruizer",
+      id: md5(location.pathname),
+      distractionFreeMode: distractionFreeMode
+    }).render('gitalk-container')
+  }
+
+</script>
 
   
 
@@ -387,7 +390,7 @@ var _hmt = _hmt || [];
 	<div class="outer">
 		<div id="footer-info">
 			<div class="footer-left">
-				&copy; 2019 Ruizer
+				&copy; 2020 Ruizer
 				<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 			</div>
 			<div class="footer-right">
@@ -469,15 +472,11 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,11 +492,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">目标</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color1">table</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,7 +512,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">table</a>
+                <a href="javascript:void(0)" class="js-tag color2">postMessage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">微信登陆</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,18 +533,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">cli</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">postMessage</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">微信登陆</a>
               </li>
              
               <li class="article-tag-list-item">
